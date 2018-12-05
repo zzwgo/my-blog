@@ -1,19 +1,17 @@
 package com.my.blog.website.constant;
 
 import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by BlueT on 2017/3/3.
  */
 @Component
 public class WebConst {
-    public static Map<String, String> initConfig = new HashMap<>();
 
+
+    public static Map<String, String> initConfig = new HashMap<>();
 
     public static String LOGIN_SESSION_KEY = "login_user";
 

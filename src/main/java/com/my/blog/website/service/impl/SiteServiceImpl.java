@@ -133,12 +133,12 @@ public class SiteServiceImpl implements ISiteService {
             backResponse.setSqlPath(zipFile);
 
             // 10秒后删除备份文件
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    new File(zip).delete();
-                }
-            }, 10 * 1000);
+//            new Timer().schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    new File(zip).delete();
+//                }
+//            }, 10 * 1000);
         }
         return backResponse;
     }
