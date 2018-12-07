@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='页面管理',active='page'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
+<div class="bgpicture">
 <body class="fixed-left">
 <div id="wrapper">
     <div th:replace="admin/header::header-body"></div>
@@ -15,7 +16,7 @@
                         <div class="pull-right">
                             <a th:href="@{/admin/page/new}" class="btn btn-success waves-effect waves-light m-b-5">添加新页面</a>
                         </div>
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered  table-hover">
                             <thead>
                             <tr>
                                 <th>页面名称</th>
@@ -81,4 +82,5 @@
     /*]]>*/
 </script>
 </body>
+</div>
 </html>
