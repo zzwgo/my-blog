@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='个人设置',active='home'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='Personal Setting',active='home'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <div class="bgpicture">
 <body>
@@ -7,38 +7,38 @@
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
         <div class="content">
-            <div class="container">
+            <div class="container"  style="opacity:0.9">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-color panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">个人信息</h3>
+                                <h3 class="panel-title">Personal Setting</h3>
                             </div>
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" id="user-form">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">账号</label>
+                                        <label class="col-md-3 control-label">Account</label>
                                         <div class="col-md-9">
                                             <input type="text" th:value="${session.login_user.username}" class="form-control"  readonly="readonly" disabled="disabled"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">姓名</label>
+                                        <label class="col-md-3 control-label">Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="screenName" placeholder="输入您的姓名"
+                                            <input type="text" class="form-control" name="screenName" placeholder="Enter your name"
                                                    th:value="${session.login_user.screenName}" required="required" aria-required="true"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">邮箱</label>
+                                        <label class="col-md-3 control-label">email</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="email" placeholder="输入您的邮箱"
+                                            <input type="text" class="form-control" name="email" placeholder="Enter your email"
                                                    th:value="${session.login_user.email}" required="required" aria-required="true"/>
                                         </div>
                                     </div>
                                     <div class="clearfix pull-right">
                                         <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveSetting()">
-                                            保存信息
+                                            Save
                                         </button>
                                     </div>
                                 </form>
@@ -48,33 +48,33 @@
                     <div class="col-md-6">
                         <div class="panel panel-color panel-danger">
                             <div class="panel-heading">
-                                <h3 class="panel-title">修改密码</h3>
+                                <h3 class="panel-title">Change the password</h3>
                             </div>
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" id="pwd-form">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">输入旧密码</label>
+                                        <label class="col-md-3 control-label">Enter old password</label>
                                         <div class="col-md-9">
                                             <input type="password" class="form-control" name="oldPassword" required="required"
                                                    aria-required="true"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">输入新密码</label>
+                                        <label class="col-md-3 control-label">Enter a new password</label>
                                         <div class="col-md-9">
                                             <input type="password" name="password" id="password1" class="form-control" required="required"
                                                    aria-required="true" rangelength="[6,14]"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">确认新密码</label>
+                                        <label class="col-md-3 control-label">Confirm new password</label>
                                         <div class="col-md-9">
                                             <input type="password" name="repass" class="form-control" equalTo="#password1"/>
                                         </div>
                                     </div>
                                     <div class="clearfix pull-right">
                                         <button type="submit" class="btn btn-danger waves-effect waves-light">
-                                            设置密码
+                                            Set the password
                                         </button>
                                     </div>
                                 </form>
@@ -105,9 +105,9 @@
             data: param,
             success: function (result) {
                 if(result && result.success){
-                    tale.alertOk('保存成功');
+                    tale.alertOk('Save successfully');
                 } else {
-                    tale.alertError(result.msg || '保存失败');
+                    tale.alertError(result.msg || 'Save failed');
                 }
             }
         });
@@ -121,9 +121,9 @@
                 data: params,
                 success: function (result) {
                     if(result && result.success){
-                        tale.alertOk('密码修改成功');
+                        tale.alertOk('Save successfully');
                     } else {
-                        tale.alertError(result.msg || '密码修改失败');
+                        tale.alertError(result.msg || 'Save failed');
                     }
                 }
             });

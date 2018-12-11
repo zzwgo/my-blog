@@ -5,14 +5,14 @@
 $('#tags').tagsInput({
     width: '100%',
     height: '35px',
-    defaultText: '请输入文章标签'
+    defaultText: 'Please input tag'
 });
 
 $('.toggle').toggles({
     on: true,
     text: {
-        on: '开启',
-        off: '关闭'
+        on: 'Open',
+        off: 'Close'
     }
 });
 
@@ -30,11 +30,11 @@ function subArticle(status) {
     var title = $('#articleForm input[name=title]').val();
     var content = $('#text').val();
     if (title == '') {
-        tale.alertWarn('请输入文章标题');
+        tale.alertWarn('Please input title');
         return;
     }
     if (content == '') {
-        tale.alertWarn('请输入文章内容');
+        tale.alertWarn('Please input content');
         return;
     }
     $('#content-editor').val(content);
@@ -48,7 +48,7 @@ function subArticle(status) {
         success: function (result) {
             if (result && result.success) {
                 tale.alertOk({
-                    text:'文章保存成功',
+                    text:'Save successfully',
                     then: function () {
                         setTimeout(function () {
                             window.location.href = '/admin/article';
@@ -56,7 +56,7 @@ function subArticle(status) {
                     }
                 });
             } else {
-                tale.alertError(result.msg || '保存文章失败');
+                tale.alertError(result.msg || 'Save fail');
             }
         }
     });
@@ -109,7 +109,7 @@ function allow_feed(obj) {
 $('div.allow-false').toggles({
     off: true,
     text: {
-        on: '开启',
-        off: '关闭'
+        on: 'Open',
+        off: 'Close'
     }
 });

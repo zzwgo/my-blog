@@ -121,7 +121,7 @@ public class MetaServiceImpl implements IMetaService {
             List<MetaVo> metaVos = metaDao.selectByExample(metaVoExample);
             MetaVo metas;
             if (metaVos.size() != 0) {
-                throw new TipException("已经存在该项");
+                throw new TipException("It already exists");
             } else {
                 metas = new MetaVo();
                 metas.setName(name);
@@ -143,7 +143,7 @@ public class MetaServiceImpl implements IMetaService {
     @Transactional
     public void saveMetas(Integer cid, String names, String type) {
         if (null == cid) {
-            throw new TipException("项目关联id不能为空");
+            throw new TipException("The item association id cannot be empty");
         }
         if (StringUtils.isNotBlank(names) && StringUtils.isNotBlank(type)) {
             String[] nameArr = StringUtils.split(names, ",");
@@ -164,7 +164,7 @@ public class MetaServiceImpl implements IMetaService {
             metas = metaVos.get(0);
             mid = metas.getMid();
         } else if (metaVos.size() > 1) {
-            throw new TipException("查询到多条数据");
+            throw new TipException("Multiple data were queried");
         } else {
             metas = new MetaVo();
             metas.setSlug(name);

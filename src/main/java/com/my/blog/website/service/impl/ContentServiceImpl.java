@@ -48,34 +48,34 @@ public class ContentServiceImpl implements IContentService {
     @Transactional
     public String publish(ContentVo contents) {
         if (null == contents) {
-            return "文章对象为空";
+            return "The article object is empty";
         }
         if (StringUtils.isBlank(contents.getTitle())) {
-            return "文章标题不能为空";
+            return "The title of the article cannot be empty";
         }
         if (StringUtils.isBlank(contents.getContent())) {
-            return "文章内容不能为空";
+            return "Article content cannot be empty";
         }
         int titleLength = contents.getTitle().length();
         if (titleLength > WebConst.MAX_TITLE_COUNT) {
-            return "文章标题过长";
+            return "The title of the article is too long";
         }
         int contentLength = contents.getContent().length();
         if (contentLength > WebConst.MAX_TEXT_COUNT) {
-            return "文章内容过长";
+            return "The article is too long";
         }
         if (null == contents.getAuthorId()) {
-            return "请登录后发布文章";
+            return "Please log in and post the article";
         }
         if (StringUtils.isNotBlank(contents.getSlug())) {
             if (contents.getSlug().length() < 5) {
-                return "路径太短了";
+                return "The path is too short";
             }
-            if (!TaleUtils.isPath(contents.getSlug())) return "您输入的路径不合法";
+            if (!TaleUtils.isPath(contents.getSlug())) return "The path you entered is not valid";
             ContentVoExample contentVoExample = new ContentVoExample();
             contentVoExample.createCriteria().andTypeEqualTo(contents.getType()).andStatusEqualTo(contents.getSlug());
             long count = contentDao.countByExample(contentVoExample);
-            if (count > 0) return "该路径已经存在，请重新输入";
+            if (count > 0) return "The path already exists, please reenter it";
         } else {
             contents.setSlug(null);
         }
@@ -175,7 +175,7 @@ public class ContentServiceImpl implements IContentService {
             relationshipService.deleteById(cid, null);
             return WebConst.SUCCESS_RESULT;
         }
-        return "数据为空";
+        return "Data is empty";
     }
 
     @Override
@@ -191,24 +191,24 @@ public class ContentServiceImpl implements IContentService {
     @Transactional
     public String updateArticle(ContentVo contents) {
         if (null == contents) {
-            return "文章对象为空";
+            return "The article object is empty";
         }
         if (StringUtils.isBlank(contents.getTitle())) {
-            return "文章标题不能为空";
+            return "The title of the article cannot be empty";
         }
         if (StringUtils.isBlank(contents.getContent())) {
-            return "文章内容不能为空";
+            return "Article content cannot be empty";
         }
         int titleLength = contents.getTitle().length();
         if (titleLength > WebConst.MAX_TITLE_COUNT) {
-            return "文章标题过长";
+            return "The title of the article is too long";
         }
         int contentLength = contents.getContent().length();
         if (contentLength > WebConst.MAX_TEXT_COUNT) {
-            return "文章内容过长";
+            return "The article is too long";
         }
         if (null == contents.getAuthorId()) {
-            return "请登录后发布文章";
+            return "Please log in and post the article";
         }
         if (StringUtils.isBlank(contents.getSlug())) {
             contents.setSlug(null);

@@ -64,10 +64,10 @@ public class AuthController extends BaseController {
         } catch (Exception e) {
             error_count = null == error_count ? 1 : error_count + 1;
             if (error_count > 3) {
-                return RestResponseBo.fail("您输入密码已经错误超过3次，请10分钟后尝试");
+                return RestResponseBo.fail("You have entered your password incorrectly more than 3 times. Please try again 10 minutes later");
             }
             cache.set("login_error_count", error_count, 10 * 60);
-            String msg = "登录失败";
+            String msg = "Login failed";
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
@@ -96,7 +96,7 @@ public class AuthController extends BaseController {
             response.sendRedirect("/admin/login");
         } catch (IOException e) {
             e.printStackTrace();
-            LOGGER.error("注销失败", e);
+            LOGGER.error("Logout failed", e);
         }
     }
 

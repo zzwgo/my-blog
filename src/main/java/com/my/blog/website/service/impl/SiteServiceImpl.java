@@ -85,10 +85,10 @@ public class SiteServiceImpl implements ISiteService {
         BackResponseBo backResponse = new BackResponseBo();
         if (bk_type.equals("attach")) {
             if (StringUtils.isBlank(bk_path)) {
-                throw new TipException("请输入备份文件存储路径");
+                throw new TipException("Please enter the backup file storage path");
             }
             if (!(new File(bk_path)).isDirectory()) {
-                throw new TipException("请输入一个存在的目录");
+                throw new TipException("Please enter an existing directory");
             }
             String bkAttachDir = AttachController.CLASSPATH + "upload";
             String bkThemesDir = AttachController.CLASSPATH + "templates/themes";
@@ -126,7 +126,7 @@ public class SiteServiceImpl implements ISiteService {
             ZipUtils.zipFile(sqlFile.getPath(), zip);
 
             if (!sqlFile.exists()) {
-                throw new TipException("数据库备份失败");
+                throw new TipException("Database backup failed");
             }
             sqlFile.delete();
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='系统设置',active='settings'">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='System Setting',active='settings'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
 <link th:href="@{/admin/plugins/toggles/toggles.css}" rel="stylesheet"/>
 <div class="bgpicture">
@@ -8,45 +8,45 @@
     <div th:replace="admin/header::header-body"></div>
     <div class="content-page">
         <div class="content">
-            <div class="container">
+            <div class="container"  style="opacity:0.9">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h4 class="page-title">系统设置</h4>
+                        <h4 class="page-title">System Setting</h4>
                     </div>
                     <div class="col-md-6">
                         <div class="panel panel-color panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">全局设置</h3>
+                                <h3 class="panel-title">Global Setting</h3>
                             </div>
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" id="global-form">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">站点名称</label>
+                                        <label class="col-md-3 control-label">Blog Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="site_title" placeholder="站点名称"
+                                            <input type="text" class="form-control" name="site_title" placeholder="Blog Name"
                                                    th:value="${options.site_title}" required="required" aria-required="true"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">站点描述</label>
+                                        <label class="col-md-3 control-label">Blog description</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="site_description" placeholder="站点描述"
+                                            <input type="text" class="form-control" name="site_description" placeholder="Blog description"
                                                    th:value="${options.site_description}" required="required" aria-required="true"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">ICP备案号</label>
+                                        <label class="col-md-3 control-label">The ICP registration numbe</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="site_record" placeholder="ICP备案号"
+                                            <input type="text" class="form-control" name="site_record" placeholder="The ICP registration numbe"
                                                    th:value="${options.site_record}" required="required" aria-required="true"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">博客主题</label>
+                                        <label class="col-md-3 control-label">Blog theme</label>
                                         <div class="col-md-9">
                                             <select name="site_theme" class="form-control">
-                                                <option value="default" th:selected="${options.site_theme=='default'}?true:false">默认主题</option>
+                                                <option value="default" th:selected="${options.site_theme=='default'}?true:false">Default theme</option>
                                             </select>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     <input type="hidden" name="allow_install" id="allow_install"/>
                                     <div class="clearfix pull-right">
                                         <button type="button" class="btn btn-primary waves-effect waves-light" onclick="saveSetting()">
-                                            保存设置
+                                            Save
                                         </button>
                                     </div>
                                 </form>
@@ -65,42 +65,42 @@
                     <div class="col-md-6">
                         <div class="panel panel-color panel-inverse">
                             <div class="panel-heading">
-                                <h3 class="panel-title">个性化设置</h3>
+                                <h3 class="panel-title">Personalized Setting</h3>
                             </div>
                             <div class="panel-body">
                                 <form id="indivi-form" class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">微博账号</label>
+                                        <label class="col-md-3 control-label">Sina weibo</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="social_weibo" th:value="${options.social_weibo}"
-                                                   placeholder="微博账号，不输入则不显示"/>
+                                                   placeholder="No input, no display"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">知乎账号</label>
+                                        <label class="col-md-3 control-label">Zhihu</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="social_zhihu" th:value="${options.social_zhihu}"
-                                                   placeholder="知乎账号，不输入则不显示"/>
+                                                   placeholder="No input, no display"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Github账号</label>
+                                        <label class="col-md-3 control-label">Github</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="social_github"
-                                                   th:value="${options.social_github}" placeholder="Github账号，不输入则不显示"/>
+                                                   th:value="${options.social_github}" placeholder="No input, no display"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 control-label">Twitter账号</label>
+                                        <label class="col-md-3 control-label">Twitter</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="social_twitter"
-                                                   th:value="${options.social_twitter}" placeholder="Twitter账号，不输入则不显示"/>
+                                                   th:value="${options.social_twitter}" placeholder="No input, no display"/>
                                         </div>
                                     </div>
                                     <div class="clearfix pull-right">
                                         <button type="button" class="btn btn-inverse waves-effect waves-light"
                                                 onclick="saveIndiviSetting()">
-                                            保存设置
+                                            Save
                                         </button>
                                     </div>
                                 </form>
@@ -113,7 +113,7 @@
                     <div class="col-md-6">
                         <div class="panel panel-color panel-success">
                             <div class="panel-heading">
-                                <h3 class="panel-title">系统备份（备份文件包含附件和主题）</h3>
+                                <h3 class="panel-title">System backup (backup files contain attachments and topics)</h3>
                             </div>
                             <div class="panel-body">
                                 <form id="backupForm" class="form-inline" role="form">
@@ -122,11 +122,11 @@
                                         <input name="url" class="form-control" placeholder="请输入备份文件格式，如yyyy-MM-dd" required="" aria-required="true" type="url">
                                     </div>-->
                                     <div class="form-group col-md-6">
-                                        <input id="backup_dir" style="width: 100%;" class="form-control" placeholder="请输入备份存放的磁盘路径" required="" aria-required="true" type="text"/>
+                                        <input id="backup_dir" style="width: 100%;" class="form-control" placeholder="Please enter the disk path for backup storage" required="" aria-required="true" type="text"/>
                                     </div>
 
-                                    <button type="button" class="btn btn-success waves-effect waves-light m-l-10" onclick="backup('attach');">备份文件</button>
-                                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="backup('db')">导出数据库SQL</button>
+                                    <button type="button" class="btn btn-success waves-effect waves-light m-l-10" onclick="backup('attach');">Backup file</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" onclick="backup('db')">Export database</button>
                                 </form>
                             </div>
                         </div>
@@ -154,9 +154,9 @@
             data: param,
             success: function (result) {
                 if(result && result.success){
-                    tale.alertOk('设置保存成功');
+                    tale.alertOk('Save successfully');
                 } else {
-                    tale.alertError(result.msg || '设置保存失败');
+                    tale.alertError(result.msg || 'Save failed');
                 }
             }
         });
@@ -172,9 +172,9 @@
             data: param,
             success: function (result) {
                 if(result && result.success){
-                    tale.alertOk('设置保存成功');
+                    tale.alertOk('Save successfully');
                 } else {
-                    tale.alertError(result.msg || '设置保存失败');
+                    tale.alertError(result.msg || 'Save failed');
                 }
             }
         });
@@ -209,7 +209,7 @@
             success: function (result) {
                 if(result && result.success){
                     if(result.payload && result.payload.attach_path){
-                        swal('备份成功', '您的附件备份在 <mark>'+ result.payload.attach_path +'</mark><br/><br/>' +
+                        swal('Backup successfully', 'Backup URL in  <mark>'+ result.payload.attach_path +'</mark><br/><br/>' +
                             '主题备份存储在 <mark>'+ result.payload.theme_path +'</mark>', 'success');
                         $('#backup_dir').val('');
                     }
@@ -217,7 +217,7 @@
                         window.location.href = '/upload/' + result.payload.sql_path;
                     }
                 } else {
-                    tale.alertError(result.msg || '备份失败');
+                    tale.alertError(result.msg || 'Backup failed');
                 }
             }
         });
@@ -226,15 +226,15 @@
     $('.allow-1').toggles({
         on: true,
         text: {
-            on: '开启',
-            off: '关闭'
+            on: 'Open',
+            off: 'Close'
         }
     });
     $('.allow-0').toggles({
         off: true,
         text: {
-            on: '开启',
-            off: '关闭'
+            on: 'Open',
+            off: 'Close'
         }
     });
     /*]]>*/

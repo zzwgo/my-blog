@@ -40,26 +40,26 @@ public class CommentServiceImpl implements ICommentService {
     @Transactional
     public String insertComment(CommentVo comments) {
         if (null == comments) {
-            return "评论对象为空";
+            return "The comment object is empty";
         }
         if (StringUtils.isBlank(comments.getAuthor())) {
-            comments.setAuthor("热心网友");
+            comments.setAuthor("Enthusiastic netizens");
         }
         if (StringUtils.isNotBlank(comments.getMail()) && !TaleUtils.isEmail(comments.getMail())) {
-            return "请输入正确的邮箱格式";
+            return "Please enter the correct email format";
         }
         if (StringUtils.isBlank(comments.getContent())) {
-            return "评论内容不能为空";
+            return "Comments should not be empty";
         }
         if (comments.getContent().length() < 5 || comments.getContent().length() > 2000) {
-            return "评论字数在5-2000个字符";
+            return "Comments are between 5 and 2000 characters long";
         }
         if (null == comments.getCid()) {
-            return "评论文章不能为空";
+            return "Comments should not be empty";
         }
         ContentVo contents = contentService.getContents(String.valueOf(comments.getCid()));
         if (null == contents) {
-            return "不存在的文章";
+            return "Nonexistent articles";
         }
         comments.setOwnerId(contents.getAuthorId());
         comments.setStatus("not_audit");
@@ -118,7 +118,7 @@ public class CommentServiceImpl implements ICommentService {
     @Transactional
     public void delete(Integer coid, Integer cid) {
         if (null == coid) {
-            throw new TipException("主键为空");
+            throw new TipException("A primary key is empty");
         }
         commentDao.deleteByPrimaryKey(coid);
         ContentVo contents = contentService.getContents(cid + "");

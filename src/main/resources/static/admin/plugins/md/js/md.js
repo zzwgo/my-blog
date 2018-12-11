@@ -178,7 +178,7 @@ function markdown(textarea, toolbar, preview) {
     editor.run();
 
     // 编辑预览切换
-    var edittab = $('#md-button-bar').prepend('<div class="md-edittab"><a href="#md-editarea" class="active">撰写</a><a href="#md-preview">预览</a></div>'),
+    var edittab = $('#md-button-bar').prepend('<div class="md-edittab"><a href="#md-editarea" class="active">Edit</a><a href="#md-preview">Preview</a></div>'),
         editarea = $(textarea.parent()).attr("id", "md-editarea");
 
     $(".md-edittab a").click(function() {

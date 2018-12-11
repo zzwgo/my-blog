@@ -180,29 +180,29 @@ public class IndexController extends BaseController {
         }
 
         if (null == cid || StringUtils.isBlank(text)) {
-            return RestResponseBo.fail("请输入完整后评论");
+            return RestResponseBo.fail("Please enter your full comment");
         }
 
         if (StringUtils.isNotBlank(author) && author.length() > 50) {
-            return RestResponseBo.fail("姓名过长");
+            return RestResponseBo.fail("The name is too long");
         }
 
         if (StringUtils.isNotBlank(mail) && !TaleUtils.isEmail(mail)) {
-            return RestResponseBo.fail("请输入正确的邮箱格式");
+            return RestResponseBo.fail("Please enter the correct email format");
         }
 
         if (StringUtils.isNotBlank(url) && !PatternKit.isURL(url)) {
-            return RestResponseBo.fail("请输入正确的URL格式");
+            return RestResponseBo.fail("Please enter the correct URL format");
         }
 
         if (text.length() > 200) {
-            return RestResponseBo.fail("请输入200个字符以内的评论");
+            return RestResponseBo.fail("Please enter comments of less than 200 characters");
         }
 
         String val = IPKit.getIpAddrByRequest(request) + ":" + cid;
         Integer count = cache.hget(Types.COMMENTS_FREQUENCY.getType(), val);
         if (null != count && count > 0) {
-            return RestResponseBo.fail("您发表评论太快了，请过会再试");
+            return RestResponseBo.fail("You are too quick to comment. Please try again later");
         }
 
         author = TaleUtils.cleanXSS(author);

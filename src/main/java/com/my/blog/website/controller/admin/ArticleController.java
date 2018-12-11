@@ -79,8 +79,9 @@ public class ArticleController extends BaseController {
         UserVo users = this.user(request);
         contents.setAuthorId(users.getUid());
         contents.setType(Types.ARTICLE.getType());
+        logService.insertLog(LogActions.PUB_ARTICLE.getAction(), contents.getCid() + "", request.getRemoteAddr(), this.getUid(request));
         if (StringUtils.isBlank(contents.getCategories())) {
-            contents.setCategories("默认分类");
+            contents.setCategories("default");
         }
         String result = contentsService.publish(contents);
         if (!WebConst.SUCCESS_RESULT.equals(result)) {
@@ -93,6 +94,7 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public RestResponseBo modifyArticle(ContentVo contents, HttpServletRequest request) {
         UserVo users = this.user(request);
+        logService.insertLog(LogActions.UP_ARTICLE.getAction(), contents.getCid() + "", request.getRemoteAddr(), this.getUid(request));
         contents.setAuthorId(users.getUid());
         contents.setType(Types.ARTICLE.getType());
         String result = contentsService.updateArticle(contents);

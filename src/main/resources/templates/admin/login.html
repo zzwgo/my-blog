@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="shortcut icon" th:href="@{/admin/images/favicon.png}"/>
-    <title>My Blog - 用户登录</title>
+    <title>Login</title>
     <link th:href="@{//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/admin/css/style.min.css}" rel="stylesheet" type="text/css"/>
@@ -61,13 +61,13 @@
                 <div class="form-group">
                     <div class="col-xs-12">
                         <input class=" input-lg input-border" name="username" type="text" required=""
-                               placeholder="账号:"/>
+                               placeholder="Account:"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
                         <input class=" input-lg input-border" name="password" type="password" required=""
-                               placeholder="密码:"/>
+                               placeholder="Password:"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group text-center m-t-40">
                     <div class="col-xs-12">
-                        <button class="btn btn-danger btn-lg btn-rounded btn-block w-lg waves-effect waves-light" style="box-shadow: 0px 0px 4px #868282; " type="submit">登&nbsp;录
+                        <button class="btn btn-danger btn-lg btn-rounded btn-block w-lg waves-effect waves-light" style="box-shadow: 0px 0px 4px #868282; " type="submit">Login
                         </button>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                 if (result && result.success) {
                     window.location.href = '/admin/index';
                 } else {
-                    tale.alertError(result.msg || '登录失败');
+                    tale.alertError(result.msg || 'login failed');
                 }
             }
         });

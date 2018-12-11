@@ -207,7 +207,7 @@ public final class Commons {
             }
             return sbuf.toString();
         }
-        return show_categories("默认分类");
+        return show_categories("default");
     }
 
     /**

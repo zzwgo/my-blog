@@ -22,7 +22,7 @@
 </head>
 <div th:fragment="header-body">
 <div class="topbar">
-    <div class="topbar-left">
+    <div class="topbar-left" style="opacity:0.9;">
         <div class="text-center p-t-10" style="margin: 0 auto;">
             <div class="pull-left" style="padding-left: 10px;">
                 <a th:href="@{/admin/index}">
@@ -49,11 +49,9 @@
                            aria-expanded="true"><img th:src="${commons.gravatar(session.login_user.email)}" alt="user-img"
                                                      class="img-circle"/> </a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{${commons.site_url()}}" target="_blank"><i class="fa fa-eye"
-                                                                                         aria-hidden="true"></i>
-                                查看网站</a></li>
-                            <li><a th:href="@{/admin/profile}"><i class="fa fa-sun-o"></i> 个人设置</a></li>
-                            <li><a th:href="@{/admin/logout}"><i class="fa fa-sign-out"></i> 注销</a></li>
+                            <li><a th:href="@{${commons.site_url()}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i>Index</a></li>
+                            <li><a th:href="@{/admin/profile}"><i class="fa fa-sun-o"></i> Personal Setting</a></li>
+                            <li><a th:href="@{/admin/logout}"><i class="fa fa-sign-out"></i> Logout </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -68,45 +66,45 @@
                 <li th:class="${active}=='home'?'active':''">
                     <a th:href="@{/admin/index}"
                        th:class="${active}=='home'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-dashboard" aria-hidden="true"></i><span> 仪表盘 </span></a>
+                            class="fa fa-dashboard" aria-hidden="true"></i><span> Menu Bar</span></a>
                 </li>
                 <li th:class="${active}=='publish'?'active':''">
                     <a th:href="@{/admin/article/publish}"
                        th:class="${active}=='publish'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-pencil-square-o" aria-hidden="true"></i><span> 发布文章 </span></a>
+                            class="fa fa-pencil-square-o" aria-hidden="true"></i><span> Publish Articles </span></a>
                 </li>
                 <li th:class="${active}=='article'?'active':''">
                     <a th:href="@{/admin/article}"
                        th:class="${active}=='article'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-list" aria-hidden="true"></i><span> 文章管理 </span></a>
+                            class="fa fa-list" aria-hidden="true"></i><span> Article Manager</span></a>
                 </li>
                 <li th:class="${active}=='page'?'active':''">
                     <a th:href="@{/admin/page}" th:class="${active}=='page'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-file-text" aria-hidden="true"></i><span> 页面管理 </span></a>
+                            class="fa fa-file-text" aria-hidden="true"></i><span> Page Manager </span></a>
                 </li>
                 <li th:class="${active}=='comments'?'active':''">
                     <a th:href="@{/admin/comments}"
                        th:class="${active}=='comments'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-comments" aria-hidden="true"></i><span> 评论管理 </span></a>
+                            class="fa fa-comments" aria-hidden="true"></i><span> Comments Manager </span></a>
                 </li>
                 <li th:class="${active}=='category'?'active':''">
                     <a th:href="@{/admin/category}"
                        th:class="${active}=='category'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-tags" aria-hidden="true"></i><span> 分类/标签 </span></a>
+                            class="fa fa-tags" aria-hidden="true"></i><span> Type/Tag </span></a>
                 </li>
                 <li th:class="${active}=='attach'?'active':''">
                     <a th:href="@{/admin/attach}"
                        th:class="${active}=='attach'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-cloud-upload" aria-hidden="true"></i><span> 文件管理 </span></a>
+                            class="fa fa-cloud-upload" aria-hidden="true"></i><span> Attach Manager </span></a>
                 </li>
                 <li th:class="${active}=='links'?'active':''">
                     <a th:href="@{/admin/links}" th:class="${active}=='links'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-link" aria-hidden="true"></i><span> 友链管理 </span></a>
+                            class="fa fa-link" aria-hidden="true"></i><span> Links Manager </span></a>
                 </li>
                 <li th:class="${active}=='setting'?'active':''">
                     <a th:href="@{/admin/setting}"
                        th:class="${active}=='setting'?'waves-effect active':'waves-effect'"><i
-                            class="fa fa-gear" aria-hidden="true"></i><span> 系统设置 </span></a>
+                            class="fa fa-gear" aria-hidden="true"></i><span> System Setting </span></a>
                 </li>
             </ul>
             <div class="clearfix"></div>

@@ -107,14 +107,14 @@ public class IndexController extends BaseController {
     public RestResponseBo upPwd(@RequestParam String oldPassword, @RequestParam String password, HttpServletRequest request,HttpSession session) {
         UserVo users = this.user(request);
         if (StringUtils.isBlank(oldPassword) || StringUtils.isBlank(password)) {
-            return RestResponseBo.fail("请确认信息输入完整");
+            return RestResponseBo.fail("Please confirm that the information input is complete");
         }
 
         if (!users.getPassword().equals(TaleUtils.MD5encode(users.getUsername() + oldPassword))) {
-            return RestResponseBo.fail("旧密码错误");
+            return RestResponseBo.fail("Old password error");
         }
         if (password.length() < 6 || password.length() > 14) {
-            return RestResponseBo.fail("请输入6-14位密码");
+            return RestResponseBo.fail("Please enter a 6-14 bit password");
         }
 
         try {
@@ -130,7 +130,7 @@ public class IndexController extends BaseController {
             session.setAttribute(WebConst.LOGIN_SESSION_KEY,original);
             return RestResponseBo.ok();
         } catch (Exception e){
-            String msg = "密码修改失败";
+            String msg = "Password change failed";
             if (e instanceof TipException) {
                 msg = e.getMessage();
             } else {
