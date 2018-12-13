@@ -106,9 +106,9 @@
                     $('#linkForm input').val('');
                     $('#linkForm #sort').val('0');
                     if(result && result.success){
-                        tale.alertOkAndReload('友链保存成功');
+                        tale.alertOkAndReload('successful');
                     } else {
-                        tale.alertError(result.msg || '友链保存失败');
+                        tale.alertError(result.msg || 'failed');
                     }
                 }
             });
@@ -133,16 +133,16 @@
 
     function delLink(mid) {
         tale.alertConfirm({
-            title:'确定删除该链接吗?',
+            title:'Are you sure to delete the link?',
             then: function () {
                 tale.post({
                     url : '/admin/links/delete',
                     data: {mid: mid},
                     success: function (result) {
                         if(result && result.success){
-                            tale.alertOkAndReload('链接删除成功');
+                            tale.alertOkAndReload('Link deleted successfully');
                         } else {
-                            tale.alertError(result.msg || '链接删除失败');
+                            tale.alertError(result.msg || 'Link deletion failed');
                         }
                     }
                 });

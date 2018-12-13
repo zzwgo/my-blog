@@ -52,7 +52,7 @@ public class LinksController extends BaseController {
                 metasService.saveMeta(metas);
             }
         } catch (Exception e) {
-            String msg = "友链保存失败";
+            String msg = "save failed";
             LOGGER.error(msg, e);
             return RestResponseBo.fail(msg);
         }
@@ -65,7 +65,7 @@ public class LinksController extends BaseController {
         try {
             metasService.delete(mid);
         } catch (Exception e) {
-            String msg = "友链删除失败";
+            String msg = "delete failed ";
             LOGGER.error(msg, e);
             return RestResponseBo.fail(msg);
         }

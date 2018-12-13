@@ -19,11 +19,11 @@
             bodyTag: "section",
             transitionEffect: "fade",
             labels: {
-                previous: "上一步",
-                next: "下一步",
-                finish: "登录后台",
-                loading: '加载中...',
-                current: '当前位置'
+                previous: "pre step",
+                next: "next step",
+                finish: "Login",
+                loading: 'loading...',
+                current: 'current'
             },
             onStepChanging: function (event, currentIndex, newIndex) {
                 tale.showLoading();
@@ -52,13 +52,13 @@
                                             isValid = true;
                                         } else {
                                             if (result.msg) {
-                                                tale.alertError(result.msg || '安装失败');
+                                                tale.alertError(result.msg || 'failed');
                                             }
                                         }
                                     }
                                 });
                             } else {
-                                tale.alertError(result.msg || '测试连接失败');
+                                tale.alertError(result.msg || 'test failed');
                             }
                         }
                     });

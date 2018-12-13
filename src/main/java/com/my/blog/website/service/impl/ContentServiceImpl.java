@@ -111,6 +111,18 @@ public class ContentServiceImpl implements IContentService {
     }
 
     @Override
+    public List<ContentVo> getContentsByHits() {
+        LOGGER.debug("Enter getContents method");
+        ContentVoExample example = new ContentVoExample();
+        example.setOrderByClause("hits desc");
+        example.setLimit(10);
+        example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
+        List<ContentVo> data = contentDao.selectByExample(example);
+        LOGGER.debug("Exit getContents method");
+        return data;
+    }
+
+    @Override
     public ContentVo getContents(String id) {
         if (StringUtils.isNotBlank(id)) {
             if (Tools.isNumber(id)) {

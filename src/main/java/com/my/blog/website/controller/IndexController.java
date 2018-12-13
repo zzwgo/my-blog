@@ -76,6 +76,8 @@ public class IndexController extends BaseController {
         p = p < 0 || p > WebConst.MAX_PAGE ? 1 : p;
         PageInfo<ContentVo> articles = contentService.getContents(p, limit);
         request.setAttribute("articles", articles);
+        List<ContentVo> articlesHits = contentService.getContentsByHits();
+        request.setAttribute("articlesHits", articlesHits);
         if (p > 1) {
             this.title(request, "第" + p + "页");
         }
@@ -233,7 +235,7 @@ public class IndexController extends BaseController {
             }
             return RestResponseBo.ok();
         } catch (Exception e) {
-            String msg = "评论发布失败";
+            String msg = "failed";
             LOGGER.error(msg, e);
             return RestResponseBo.fail(msg);
         }

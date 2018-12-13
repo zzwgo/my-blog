@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="themes/default/header::header(null,null)"></div>
+<div th:replace="themes/default1/header::header(null,null)"></div>
 <body>
-<div class="main-content index-page clearfix">
-    <div class="post-lists">
-        <div class="post-lists-body">
-            <div class="post-list-item" th:each="article: ${articles.list}">
-                <div class="post-list-item-container">
-                    <a th:href="${commons.permalink(article)}" class="item-thumb  bg-deepgrey"
-                       th:style="'background-image:url('+@{${commons.show_thumb(article)}}+');'">
-                        <dir class="item-desc" th:text="${article.tags}"></dir>
-                    </a>
-                    <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
-                    <div class="item-slant"></div>
-                    <div class="item-label">
-                        <div class="item-title"><a th:href="${commons.permalink(article)}"
-                                                   th:text="${article.title}"></a>
-                        </div>
-                        <div class="item-meta clearfix">
-                            <div th:class="'item-meta-ico '+ ${commons.show_icon(article.cid)}"
-                                 th:style="'background: url('+@{/user/img/bg-ico.png}+');no-repeat;background-size: 40px auto;' "></div>
-                            <div class="item-meta-cat" th:utext="${commons.show_categories(article.categories)}">
-                            </div>
-                        </div>
-                    </div>
+<div class="jztop"></div>
+<div class="container">
+    <div class="bloglist f_l" >
+        <ul th:each="article: ${articles.list} ">
+            <li >
+                <h3 class="blogtitle"><span><a href="/jstt/css3/" title="css3" target="_blank" class="classname">个人博客</a></span>
+                <a th:href="${commons.permalink(article)}" th:text="${article.title}" ></a> </h3>
+                <div class="bloginfo">
+                    <span class="blogpic">
+                    <a th:href="${commons.permalink(article)}" ><img th:src="@{${commons.show_thumb(article)}}"/></a>
+                    </span>
+                    <p th:if="${#strings.length(article.content)>150}"  th:text="${#strings.abbreviate(article.content,150)}"></p>
+                    <!--<p th:unless="${#strings.length(article.content)<=150}"  th:text="${article.content}"></p>-->
+                    <p th:unless="${#strings.length(article.content)>150}" th:text="${article.content}"></p>
                 </div>
-            </div>
+                <div class="autor">
+                    <span class="lm f_l"></span>
+                    <span class="dtime f_l" th:text="${#dates.format(new java.util.Date(article.created*1000L),'yyyy-MM-dd HH:mm')}"></span>
+                    <span class="viewnum f_l" th:text="'浏览量('+${article.hits+')'}"></span>
+                    <span class="f_r">
+                    <a th:href="${commons.permalink(article)}" class="more">阅读原文&gt;&gt;</a>
+                    </span>
+                </div>
+            </li>
+        </ul>
+        <div class="lists-navigator clearfix" style="text-align: center">
+            <div  th:replace="comm/macros::pageNav(${articles},'←','→','page')" ></div>
         </div>
     </div>
-    <div class="lists-navigator clearfix">
-        <div th:replace="comm/macros::pageNav(${articles},'←','→','page')"></div>
+    <div class="r_box f_r">
+        <div class="tit01">
+            <h3 class="tit">关注我</h3>
+            <div class="gzwm">
+                <ul>
+                    <li><a class="email" href="#">电话</a></li>
+                    <li><a class="qq" href="#" >邮箱</a></li>
+                    <li><a class="tel" href="#" >QQ</a></li>
+                    <li><a class="prize" href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--tit01 end-->
+
+        <div class="tuwen">
+            <h3 class="tit">图文推荐</h3>
+            <ul>
+                <li><a href="/"><i><img src="images/01.jpg"/></i><b>住在手机里的朋友</b></a>
+                    <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+                </li>
+            </ul>
+        </div>
+        <div class="ph">
+            <h3 class="tit">热门排行</h3>
+            <ul class="rank" th:each="articlesHit: ${articlesHits} ">
+                <a th:href="${commons.permalink(articlesHit)}">
+                <li th:if="${#strings.length('【'+articlesHit.title+'】'+articlesHit.content)>40}" th:text="${#strings.abbreviate('【'+articlesHit.title+'】'+articlesHit.content,40)}">
+                </li>
+                </a>
+                <a th:href="${commons.permalink(articlesHit)}" >
+                <li th:unless="${#strings.length('【'+articlesHit.title+'】'+articlesHit.content)>40}" th:text="${'【'+articlesHit.title+'】'+articlesHit.content+'...'}">
+                </li>
+                </a>
+            </ul>
+        </div>
+        <div class="ad"> <img src="user/images/03.jpg"/> </div>
     </div>
+
 </div>
+<!-- container代码 结束 -->
+<div class="jzend"></div>
+
 </body>
-<div th:replace="themes/default/footer::footer"></div>
+<div th:replace="themes/default1/footer::footer"></div>
 </html>

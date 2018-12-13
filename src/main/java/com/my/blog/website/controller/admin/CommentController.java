@@ -51,11 +51,11 @@ public class CommentController extends BaseController {
         try {
             CommentVo comments = commentsService.getCommentById(coid);
             if (null == comments) {
-                return RestResponseBo.fail("不存在该评论");
+                return RestResponseBo.fail("The comment does not exist");
             }
             commentsService.delete(coid, comments.getCid());
         } catch (Exception e) {
-            String msg = "评论删除失败";
+            String msg = "delete failed";
             LOGGER.error(msg, e);
             return RestResponseBo.fail(msg);
         }
@@ -72,10 +72,10 @@ public class CommentController extends BaseController {
                 comments.setStatus(status);
                 commentsService.update(comments);
             } else {
-                return RestResponseBo.fail("操作失败");
+                return RestResponseBo.fail("fail");
             }
         } catch (Exception e) {
-            String msg = "操作失败";
+            String msg = "fail";
             return RestResponseBo.fail(msg);
         }
         return RestResponseBo.ok();

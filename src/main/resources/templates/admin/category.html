@@ -111,9 +111,9 @@
                     $('#cform #mid').val('');
                     $('#cform #cname').val('');
                     if (result && result.success) {
-                        tale.alertOkAndReload('分类保存成功');
+                        tale.alertOkAndReload('successful');
                     } else {
-                        tale.alertError(result.msg || '分类保存失败');
+                        tale.alertError(result.msg || 'failed');
                     }
                 }
             });
@@ -137,9 +137,9 @@
                     data: {mid: mid},
                     success: function (result) {
                         if (result && result.success) {
-                            tale.alertOkAndReload('删除成功');
+                            tale.alertOkAndReload('successful');
                         } else {
-                            tale.alertError(result.msg || '删除失败');
+                            tale.alertError(result.msg || 'failed');
                         }
                     }
                 });

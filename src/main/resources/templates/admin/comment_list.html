@@ -94,16 +94,16 @@
 
     function updateStatus(coid) {
         tale.alertConfirm({
-            title: '确定审核通过吗?',
+            title: 'Are you sure it has been approved?',
             then: function () {
                 tale.post({
                     url: '/admin/comments/status',
                     data: {coid: coid, status: "approved"},
                     success: function (result) {
                         if (result && result.success) {
-                            tale.alertOkAndReload('评论状态设置成功');
+                            tale.alertOkAndReload('Comment status set successfully');
                         } else {
-                            tale.alertError(result.msg || '评论设置失败');
+                            tale.alertError(result.msg || 'Comment setting failed');
                         }
                     }
                 });

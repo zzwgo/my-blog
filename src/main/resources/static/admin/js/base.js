@@ -40,7 +40,7 @@ $.extend({
  */
 $.tale.prototype.alertOk = function (options) {
     options = options.length ? {text:options} : ( options || {} );
-    options.title = options.title || '操作成功';
+    options.title = options.title || 'Successful';
     options.text = options.text;
     options.showCancelButton = false;
     options.showCloseButton = false;
@@ -66,7 +66,7 @@ $.tale.prototype.alertOkAndReload = function (text) {
  */
 $.tale.prototype.alertWarn = function (options) {
     options = options.length ? {text:options} : ( options || {} );
-    options.title = options.title || '警告信息';
+    options.title = options.title || 'Warning';
     options.text = options.text;
     options.timer = 3000;
     options.type = 'warning';
@@ -79,7 +79,7 @@ $.tale.prototype.alertWarn = function (options) {
  */
 $.tale.prototype.alertConfirm = function (options) {
     options = options || {};
-    options.title = options.title || '确定要删除吗？';
+    options.title = options.title || 'Are you sure you want to delete it ？';
     options.text = options.text;
     options.showCancelButton = true;
     options.type = 'question';
@@ -92,7 +92,7 @@ $.tale.prototype.alertConfirm = function (options) {
  */
 $.tale.prototype.alertError = function (options) {
     options = options.length ? {text:options} : ( options || {} );
-    options.title = options.title || '错误信息';
+    options.title = options.title || 'The error message';
     options.text = options.text;
     options.type = 'error';
     this.alertBox(options);
@@ -113,8 +113,8 @@ $.tale.prototype.alertBox = function (options) {
         showLoaderOnConfirm: options.showLoaderOnConfirm || false,
         confirmButtonColor: options.confirmButtonColor || '#3085d6',
         cancelButtonColor: options.cancelButtonColor || '#d33',
-        confirmButtonText: options.confirmButtonText || '确定',
-        cancelButtonText: options.cancelButtonText || '取消'
+        confirmButtonText: options.confirmButtonText || 'confirm',
+        cancelButtonText: options.cancelButtonText || 'cancel'
     }).then(function (e) {
         options.then && options.then(e);
     }).catch(swal.noop);
