@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText, prefix)">
+<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText,url)">
     <th:block th:if="${pageInfo.hasPreviousPage}">
-        <li class="prev"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.prePage}}" th:text="${prevText}"></a></li>
+        <li class="prev"><a th:href="@{${url}+${pageInfo.prePage}}" th:text="${prevText}"></a></li>
     </th:block>
 
 
     <th:block th:each="navIndex :${ pageInfo.navigatepageNums}">
-        <li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{'/page/'+${navIndex}}"
+        <li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{${url}+${navIndex}}"
                                                                      th:text="${navIndex}"></a></li>
     </th:block>
 
 
     <th:block th:if="${pageInfo.hasNextPage}">
-        <li class="next"><a th:href="@{'/'+${prefix}+'/'+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>
+        <li class="next"><a th:href="@{${url}+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>
     </th:block>
 
 </ol>
@@ -23,7 +23,7 @@
     <div class="clearfix">
         <ul class="pagination m-b-5 pull-right">
             <li th:if="${pageInfo.hasPreviousPage}">
-                <a th:href="@{'?page='+${pageInfo.prePage}}" aria-label="Previous">
+                <a th:href="@{${url}+${pageInfo.prePage}}" aria-label="Previous">
                     <i class="fa fa-angle-left"></i>&nbsp;pre page
                 </a>
             </li>
@@ -35,7 +35,7 @@
 
             <th:block th:if="${pageInfo.hasNextPage}">
                 <li>
-                    <a th:href="@{'?page='+${pageInfo.nextPage}}" aria-label="Next">
+                    <a th:href="@{${url}+${pageInfo.nextPage}}" aria-label="Next">
                         next page&nbsp;<i class="fa fa-angle-right"></i>
                     </a>
                 </li>

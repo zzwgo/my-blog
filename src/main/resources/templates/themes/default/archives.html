@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="themes/default/header::header(title='文章归档',keywords=null)"></div>
+<div th:replace="themes/default1/header::header(null,null)"></div>
 <body>
-<div class="main-content archive-page clearfix">
-    <div class="categorys-item">
-        <th:block th:each="archive : ${archives}">
-            <div class="categorys-title" th:text="${archive.date}"></div>
-            <div class="post-lists">
-                <div class="post-lists-body">
-                    <th:block th:each="article : ${archive.articles}">
-                        <div class="post-list-item">
-                            <div class="post-list-item-container">
-                                <div class="item-label">
-                                    <div class="item-title">
-                                        <a th:href="${commons.permalink(article.cid, article.slug)}" th:text="${article.title}"></a>
-                                    </div>
-                                    <div class="item-meta clearfix">
-                                        <div class="item-meta-date">发布于 <th:block th:text="${commons.fmtdate(article.created)}"/></div>
-                                    </div>
-                                </div>
+<div class="jztop"></div>
+<div class="container">
+    <div class="con_content">
+        <div class="about_box">
+            <h2 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>><a href="/archives">个人日记</a></span><b>个人日记</b></h2>
+            <div class="dtxw box">
+                <li>
+                    <div class="dttext" th:each="archive : ${archives.list}">
+                        <div><h3 th:text="${archive.date}"></h3></div>
+                        <th:block th:each="article : ${archive.articles}">
+                            <div class="xwpic"><a href="/"><img th:src="@{${commons.show_thumb(article)}}"/></a></div>
+                            <ul>
+                            <h2><a th:href="${commons.permalink(article.cid, article.slug)}" th:text="${article.title}"></a></h2>
+                            <p th:if="${#strings.length(article.content)>150}"  th:text="${#strings.abbreviate(article.content,150)}"></p>
+                            <p th:unless="${#strings.length(article.content)>150}" th:text="${article.content}"></p>
+                            <div class="binfo">
+                            <span th:text="'浏览量('+${article.hits+')'}"></span>   <span th:text="'发布于'+${commons.fmtdate(article.created)}"></span>
                             </div>
-                        </div>
-                    </th:block>
+                        </ul>
+                        </th:block>
+                    </div>
+                </li>
+                <div class="lists-navigator clearfix" style="text-align: center">
+                    <div  th:replace="comm/macros::pageNav(${archives},'上一页','下一页','/archives/')" ></div>
                 </div>
             </div>
-        </th:block>
+        </div>
     </div>
 </div>
+<!-- container代码 结束 -->
+<div class="jzend"></div>
+
 </body>
-<div th:replace="themes/default/footer::footer"></div>
+<div th:replace="themes/default1/footer::footer"></div>
 </html>

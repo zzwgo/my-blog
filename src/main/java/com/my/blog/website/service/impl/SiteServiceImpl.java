@@ -1,6 +1,7 @@
 package com.my.blog.website.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.my.blog.website.dao.AttachVoMapper;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.exception.TipException;
@@ -172,8 +173,9 @@ public class SiteServiceImpl implements ISiteService {
     }
 
     @Override
-    public List<ArchiveBo> getArchives() {
+    public PageInfo<ArchiveBo> getArchives(int p,int limit) {
         LOGGER.debug("Enter getArchives method");
+        PageHelper.startPage(p, limit);
         List<ArchiveBo> archives = contentDao.findReturnArchiveBo();
         if (null != archives) {
             archives.forEach(archive -> {
@@ -190,8 +192,9 @@ public class SiteServiceImpl implements ISiteService {
                 archive.setArticles(contentss);
             });
         }
+        PageInfo<ArchiveBo> pageInfo = new PageInfo<>(archives);
         LOGGER.debug("Exit getArchives method");
-        return archives;
+        return pageInfo;
     }
 
     @Override

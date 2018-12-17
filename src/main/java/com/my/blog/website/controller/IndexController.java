@@ -278,12 +278,16 @@ public class IndexController extends BaseController {
      * @return
      */
     @GetMapping(value = "archives")
-    public String archives(HttpServletRequest request) {
-        List<ArchiveBo> archives = siteService.getArchives();
+    public String archives(HttpServletRequest request ,@RequestParam(value = "limit", defaultValue = "1") int limit) {
+        return this.archives(request,1,limit);
+    }
+    @GetMapping(value = "archives/{p}")
+    public String archives(HttpServletRequest request , @PathVariable int p,@RequestParam(value = "limit", defaultValue = "1") int limit) {
+        p = p < 0 || p > WebConst.MAX_PAGE ? 1 : p;
+        PageInfo<ArchiveBo> archives = siteService.getArchives(p,limit);
         request.setAttribute("archives", archives);
         return this.render("archives");
     }
-
     /**
      * 友链页
      *

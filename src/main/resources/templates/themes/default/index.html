@@ -7,14 +7,13 @@
     <div class="bloglist f_l" >
         <ul th:each="article: ${articles.list} ">
             <li >
-                <h3 class="blogtitle"><span><a href="/jstt/css3/" title="css3" target="_blank" class="classname">个人博客</a></span>
+                <h3 class="blogtitle"><span><a th:href="${commons.permalink(article)}"  title="css3" class="classname">个人博客</a></span>
                 <a th:href="${commons.permalink(article)}" th:text="${article.title}" ></a> </h3>
                 <div class="bloginfo">
                     <span class="blogpic">
                     <a th:href="${commons.permalink(article)}" ><img th:src="@{${commons.show_thumb(article)}}"/></a>
                     </span>
                     <p th:if="${#strings.length(article.content)>150}"  th:text="${#strings.abbreviate(article.content,150)}"></p>
-                    <!--<p th:unless="${#strings.length(article.content)<=150}"  th:text="${article.content}"></p>-->
                     <p th:unless="${#strings.length(article.content)>150}" th:text="${article.content}"></p>
                 </div>
                 <div class="autor">
@@ -28,7 +27,7 @@
             </li>
         </ul>
         <div class="lists-navigator clearfix" style="text-align: center">
-            <div  th:replace="comm/macros::pageNav(${articles},'←','→','page')" ></div>
+            <div  th:replace="comm/macros::pageNav(${articles},'←','→','/page/')" ></div>
         </div>
     </div>
     <div class="r_box f_r">
@@ -66,7 +65,7 @@
                 </a>
             </ul>
         </div>
-        <div class="ad"> <img src="user/images/03.jpg"/> </div>
+        <div class="ad"> <img th:src="@{user/images/03.jpg}" /> </div>
     </div>
 
 </div>

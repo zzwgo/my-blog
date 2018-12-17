@@ -1,5 +1,6 @@
 package com.my.blog.website.service;
 
+import com.github.pagehelper.PageInfo;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.model.Bo.ArchiveBo;
 import com.my.blog.website.model.Bo.BackResponseBo;
@@ -62,7 +63,8 @@ public interface ISiteService {
      *
      * @return
      */
-    List<ArchiveBo> getArchives();
+
+   PageInfo<ArchiveBo> getArchives(int p,int limit);
 
     /**
      * 获取分类/标签列表

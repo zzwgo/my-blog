@@ -13,8 +13,10 @@
     <link th:href="@{/user/css/base.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/index.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/m.css}" rel="stylesheet"/>
+    <link th:href="@{/user/css/main.css}" rel="stylesheet"/>
     <script th:src="@{/user/js/modernizr.js}"></script>
     <script th:src="@{/user/js/jquery.js}"></script>
+
     <!--[if lt IE 9]>
     <![endif]-->
 </head>
@@ -60,53 +62,20 @@
             </form>
         </div>
         <div class="blank"></div>
-
-
-        <div id="mnav">
-            <h2><span class="navicon"></span></h2>
-            <ul>
-                <li><a href="/">网站首页</a></li>
-                <li><a href="/about.html">关于我</a></li>
-                <li><a href="/download/">模板分享</a>
-                    <ul>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                    </ul>
-                </li>
-                <li><a href="/jstt/">学无止境</a>
-                    <ul>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                    </ul></li>
-                <li><a href="/news/">慢生活</a>
-                    <ul>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                        <li><a href="#.html">关于我</a></li>
-                    </ul></li>
-                <li><a href="/e/tool/gbook/?bid=3">留言</a></li>
-            </ul>
-        </div>
         <nav>
             <div  class="navigation">
                 <ul class="menu">
-                    <li><a href="index.html">网站首页</a></li>
+                    <li><a th:href="@{/}">网站首页</a></li>
+                    <li><a th:href="${commons.site_url('/archives')}">我的日志</a>
+                    </li>
+                    <li><a href="newslistpic.html">友情链接</a> </li>
+                    <li><a href="#">给我留言</a> </li>
                     <li><a href="#">关于我</a>
                         <ul>
                             <li><a href="about.html">个人简介</a></li>
                             <li><a href="listpic.html">个人相册</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">我的日记</a>
-                        <ul>
-                            <li><a href="newslistpic.html">个人日记</a></li>
-                            <li><a href="newslistpic.html">学习笔记</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="newslistpic.html">技术文章</a> </li>
-                    <li><a href="#">给我留言</a> </li>
                 </ul>
             </div>
         </nav>
