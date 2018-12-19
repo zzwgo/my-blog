@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="themes/default/header::header(title='小伙伴们的共享链接',keywords=null)"></div>
+<div th:replace="themes/default1/header::header(title='小伙伴们的共享链接',keywords=null)"></div>
 <body>
-<article class="main-content post-page">
-    <div id="post-content" class="post-content">
-        <h3>小伙伴们的共享链接</h3>
-        <ul class="flinks">
-            <th:block th:each="link : ${links}">
-                <li>🍀 <a th:href="${link.slug}" target="_blank" th:text="${link.name}"></a></li>
-            </th:block>
-        </ul>
-        <h3>链接须知</h3>
-        <blockquote>
-            <ul>
-                <li><p>小伙伴们请确定资源共享的链接可以正常访问</p></li>
-                <li><p>原创链接优先，技术类链接优先</p></li>
+<div class="jztop"></div>
+<div class="container">
+    <div class="con_content">
+        <div class="about_box">
+            <h2 class="nh1">
+                <span>您现在的位置是：<a href="/" >网站首页</a>>><a th:href="${commons.site_url('/links')}">友情链接</a></span><b>友情链接</b></h2>
+            <ul class="about_content">
+                <h3>小伙伴们的友情链接：</h3>
+                <blockquote>
+                <ul class="flinks">
+                    <th:block th:each="link : ${links}">
+                        <li>🍀 <a th:href="${link.slug}" target="_blank" th:text="${link.name}"></a></li>
+                    </th:block>
+                </ul>
+                </blockquote>
+                <h3>链接须知：</h3>
+                <blockquote>
+                    <ul>
+                        <li><p>*小伙伴们请确定资源共享的链接可以正常访问</p></li>
+                        <li><p>*原创链接优先，技术类链接优先</p></li>
+                    </ul>
+                </blockquote>
             </ul>
-        </blockquote>
-        <h3>我的基本信息</h3>
-        <blockquote>
-            <ul>
-                <li><p> 网站名称：我的私人blog</p></li>
-                <li><p> 网站地址：http://xxxxxxxxxxxxxxxxxxxxx.ccom</p></li>
-                <li><p>我的邮箱:kenzzw@163.com             欢迎投递邮件，欢迎骚扰，一起Happy~~~</p></li>
-            </ul>
-        </blockquote>
+        </div>
     </div>
-</article>
+    <div class="blank"></div>
+</div>
+<div class="jzend"></div>
 </body>
-<div th:replace="themes/default/footer::footer"></div>
+<div th:replace="themes/default1/footer::footer"></div>
 </html>

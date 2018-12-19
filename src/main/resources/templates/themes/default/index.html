@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="themes/default1/header::header(null,null)"></div>
 <body>
+<div id="wrapper">
 <div class="jztop"></div>
 <div class="container">
     <div class="bloglist f_l" >
@@ -67,11 +68,9 @@
         </div>
         <div class="ad"> <img th:src="@{user/images/03.jpg}" /> </div>
     </div>
-
 </div>
-<!-- container代码 结束 -->
 <div class="jzend"></div>
-
-</body>
 <div th:replace="themes/default1/footer::footer"></div>
+</div>
+</body>
 </html>

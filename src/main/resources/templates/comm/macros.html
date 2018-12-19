@@ -1,23 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<ol class="page-navigator" th:fragment="pageNav(pageInfo, prevText, nextText,url)">
-    <th:block th:if="${pageInfo.hasPreviousPage}">
-        <li class="prev"><a th:href="@{${url}+${pageInfo.prePage}}" th:text="${prevText}"></a></li>
-    </th:block>
+
+<div class="clearfix">
+    <div th:fragment="pageNav(pageInfo, prevText, nextText,url)">
+        <!-- 处理页数小于等于7 的情况 -->
+        <ul th:unless="${pageInfo.pages} ge 7" class="pagination m-b-5 pull-right ">
+            <li th:if="${pageInfo.hasPreviousPage}" class="page-item">
+                <a class="page-link" th:href="@{${url}+${pageInfo.prePage}}">上一页</a>
+            </li>
+            <li th:unless="${pageInfo.hasPreviousPage}" class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+
+            <li th:each="navIndex :${ pageInfo.navigatepageNums}" th:classappend="${pageInfo.pageNum==navIndex}?'active'" class="page-item">
+                <a th:href="@{${url}+${navIndex}}" class="page-link"  th:text="${navIndex}"></a>
+            </li>
+
+            <li th:if="${pageInfo.hasNextPage}" class="page-item">
+                <a class="page-link" th:href="@{${url}+${pageInfo.nextPage}}">下一页</a>
+            </li>
+            <li th:unless="${pageInfo.hasNextPage}" class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+        </ul>
+
+        <!-- 处理页数大于7 的情况 -->
+        <ul th:if="${pageInfo.pages} gt 7"  class="pagination">
+            <li th:if="${pageInfo.hasPreviousPage}}"  class="page-item">
+                <a class="page-link"  th:href="@{${url}+${pageInfo.prePage}}">上一页</a>
+            </li>
+            <li th:unless="${pageInfo.hasPreviousPage}}"  class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+
+            <!-- 首页 -->
+            <li th:classappend="${pageInfo.pageNum==1}?'active'" class="page-item">
+                <a class="page-link" th:href="@{${url}+'1'}">1</a>
+            </li>
+
+            <!-- 当前页面小于等于4 -->
+            <li th:if="${pageInfo.pageNum le 4}" th:each="index:${#numbers.sequence(2,5)}" th:classappend="${index eq pageInfo.pageNum}?'active'" class="page-item">
+                <a th:href="@{${url}+${index}}" class="page-link"  th:text="${index}"></a>
+            </li>
+            <li th:if="${pageInfo.pageNum le 4}" class="page-item">
+                <a  class="page-link" th:href="#">...</a>
+            </li>
+
+            <!-- 最后一页与当前页面之差小于等于3 -->
+            <li th:if="${pageInfo.pages-pageInfo.pageNum le 3}" class="page-item">
+                <a  class="page-link" th:href="@{#}">...</a>
+            </li>
+            <li th:if="${pageInfo.pages-pageInfo.pageNum le 3}" th:each="index:${#numbers.sequence(pageInfo.pages-4,pageInfo.pages-1)}" th:classappend="${index eq pageInfo.pageNum}?'active'" class="page-item">
+                <a th:href="@{${url}+${index}}" class="page-link"  th:text="${index}"></a>
+            </li>
+
+            <!-- 最后一页与当前页面之差大于3 且当前页面大于4 -->
+            <li th:if="${(pageInfo.pageNum gt 4) and (pageInfo.pages-pageInfo.pageNum gt 3)}" class="page-item">
+                <a class="page-link" th:href="@{#}">...</a>
+            </li>
+            <li th:if="${(pageInfo.pageNum gt 4)and (pageInfo.pages-pageInfo.pageNum gt 3)}" th:each="index:${#numbers.sequence(pageInfo.pageNum-1,pageInfo.pageNum+1)}" th:classappend="${index eq pageInfo.pageNum}?'active'" class="page-item">
+                <a class="page-link" th:href="@{${url}+${index}}" th:text="${index}"></a>
+            </li>
+            <li th:if="${(pageInfo.pageNum gt 4) and (pageInfo.pages-pageInfo.pageNum gt 3)}" class="page-item">
+                <a class="page-link" th:href="@{#}">...</a>
+            </li>
+
+             <!--尾页 -->
+            <li th:classappend="${pageInfo.pageNum eq pageInfo.pages}?'active'" class="page-item">
+                <a class="page-link" th:href="${url}+${pageInfo.pages}}" th:text="${pageInfo.pages}">尾页</a>
+            </li>
+
+            <li th:if="${pageInfo.pageNum eq pageInfo.pages}" class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+            <li th:if="${pageInfo.pageNum lt pageInfo.pages}" class="page-item">
+                <a class="page-link" th:href="@{${url}+${pageInfo.nextPage}}">下一页</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--<ol class="page-navigator " th:fragment="pageNav(pageInfo, prevText, nextText,url)">-->
+    <!--<th:block th:if="${pageInfo.hasPreviousPage}">-->
+        <!--<li class="prev"><a th:href="@{${url}+${pageInfo.prePage}}" th:text="${prevText}"></a></li>-->
+    <!--</th:block>-->
 
 
-    <th:block th:each="navIndex :${ pageInfo.navigatepageNums}">
-        <li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{${url}+${navIndex}}"
-                                                                     th:text="${navIndex}"></a></li>
-    </th:block>
+    <!--<th:block th:each="navIndex :${ pageInfo.navigatepageNums}">-->
+        <!--<li th:class="${pageInfo.pageNum==navIndex}?'current':''"><a th:href="@{${url}+${navIndex}}"-->
+                                                                     <!--th:text="${navIndex}"></a></li>-->
+    <!--</th:block>-->
 
 
-    <th:block th:if="${pageInfo.hasNextPage}">
-        <li class="next"><a th:href="@{${url}+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>
-    </th:block>
+    <!--<th:block th:if="${pageInfo.hasNextPage}">-->
+        <!--<li class="next"><a th:href="@{${url}+${pageInfo.nextPage}}" th:text="${nextText}"></a></li>-->
+    <!--</th:block>-->
 
-</ol>
+<!--</ol>-->
 
 <div th:fragment="pageAdminNav(pageInfo)">
     <div class="clearfix">

@@ -10,13 +10,13 @@
     <meta name="keywords" th:content="${keywords ?: commons.site_option('site_keywords')}"/>
     <meta name="description" th:content="${description ?:commons.site_option('site_description')}"/>
     <title><th:block th:text="${title ?: '首页'}+' - '+${commons.site_option('site_title','My Blog')}"></th:block></title>
+    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/user/css/base.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/index.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/m.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/main.css}" rel="stylesheet"/>
     <script th:src="@{/user/js/modernizr.js}"></script>
     <script th:src="@{/user/js/jquery.js}"></script>
-
     <!--[if lt IE 9]>
     <![endif]-->
 </head>
@@ -65,11 +65,11 @@
         <nav>
             <div  class="navigation">
                 <ul class="menu">
-                    <li><a th:href="@{/}">网站首页</a></li>
+                    <li><a th:href="${commons.site_url('/')}">网站首页</a></li>
                     <li><a th:href="${commons.site_url('/archives')}">我的日志</a>
                     </li>
-                    <li><a href="newslistpic.html">友情链接</a> </li>
-                    <li><a href="#">给我留言</a> </li>
+                    <li><a th:href="${commons.site_url('/links')}">友情链接</a> </li>
+                    <li><a th:href="${commons.site_url('/message')}">给我留言</a> </li>
                     <li><a href="#">关于我</a>
                         <ul>
                             <li><a href="about.html">个人简介</a></li>

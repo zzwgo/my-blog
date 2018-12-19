@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="themes/default1/header::header(null,null)"></div>
 <body>
+<div id="wrapper">
 <div class="jztop"></div>
 <div class="container">
     <div class="con_content">
         <div class="about_box">
-            <h2 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>><a href="/archives">个人日记</a></span><b>个人日记</b></h2>
+            <h2 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>><a href="#">个人日记</a></span><b>个人日记</b></h2>
             <div class="dtxw box">
                 <li>
                     <div class="dttext" th:each="archive : ${archives.list}">
@@ -24,12 +25,11 @@
                         </th:block>
                     </div>
                 </li>
-                <div class="lists-navigator clearfix" style="text-align: center">
-                    <div  th:replace="comm/macros::pageNav(${archives},'上一页','下一页','/archives/')" ></div>
-                </div>
             </div>
+            <div th:replace="comm/macros::pageNav(${archives},'上一页','下一页','/archives/')" ></div>
         </div>
     </div>
+</div>
 </div>
 <!-- container代码 结束 -->
 <div class="jzend"></div>

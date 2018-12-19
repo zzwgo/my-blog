@@ -1,4 +1,4 @@
-@charset "gb2312";
+@charset "UTF-8";
 .con_content { overflow: hidden; width: 958px; margin: auto; border: #CCC 1px solid; background: rgba(255,255,255,0.3); }
 .about_box { padding: 20px; overflow: hidden; }
 .about_content { line-height: 24px; font-size: 14px; padding: 20px }
@@ -22,7 +22,7 @@
 .box_p span { margin: 0 10px }
 .nextinfos p { display: inline; margin-right: 20px }
 .nextinfos { text-align: center; }
-/* ��̬ */
+/* 动态 */
 .news_list { margin: 10px 0; overflow: hidden }
 .news_list li { background: url(../images/libg.jpg) no-repeat left center; ; padding-left: 20px; line-height: 26px; font-size: 14px; border-bottom: #CCC dotted 1px }
 .news_list li span { float: right; color: #999; font-size: 12px; padding-right: 10px }
@@ -47,7 +47,7 @@
 .autor span a:hover { text-decoration: underline }
 a.readmore { background: #fd8a61; color: #fff; padding: 5px 10px; float: right; margin: 20px 0 0 0; }
 .pingl.f_r { padding: 0; }
-/* ����ͼƬ�б�*/
+/* 文字图片列表*/
 .dtxw { overflow: hidden; margin: 30px auto }
 .dttext { border-bottom: #838484 1px solid; margin-left: 40px; }
 .dttext ul { padding: 20px 20px 20px 80px; overflow: hidden; }
@@ -63,10 +63,25 @@ a.readmore { background: #fd8a61; color: #fff; padding: 5px 10px; float: right; 
 .dttext h2 { font-size: 18px; font-weight: normal; padding: 5px 10px; background: #333; margin-bottom: 10px; color:#fff }
 .dttext h2 a { color: #FFF }
 .dttext { line-height: 24px; overflow: hidden }
-/* ͼƬչʾ */
+/* 图片展示 */
 .lispic { padding: 20px 0; overflow: hidden; }
 .lispic li { float: left; text-align: center; width: 200px; border: #ccc 5px solid; overflow: hidden; background: #ccc; margin: 10px 10px 10px 9px; position: relative }
 .lispic li i{display: block;height: 160px; width: 100%; overflow:hidden }
 .lispic li img { width:100%; -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -o-transition: all 0.5s; }
 .lispic li span { padding: 10px 0; display: block; position: absolute; overflow: hidden; text-align: center; bottom: 0; background: rgba(0, 0, 0, 0.55); width: 100%; color: #fff; }
 .lispic li img:hover { -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
+.comment-container{position:relative;z-index:1;color:#5f5f5f;background-color:#EBEBEB}
+.comment-form{position:relative;margin:0 0 40px;padding:10px 20px;border-radius:3px;background:#EBEBEB;-webkit-box-shadow:0 1px 4px rgba(0,0,0,.04);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.comment-form .form-control{font-size:13px;display:block;width:100%;height:34px;color:#313131;outline:0}
+.comment-form .form-control:focus{border-color:#6fa3ef;outline:0}
+.comment-form textarea.form-control{overflow:hidden;height:150px;padding:10px 0;resize:none;border-radius:3px;background-color: #EBEBEB}
+.comment-form .input-control{padding-left:10px; float: left;width:100%;max-width:292px;border-bottom:1px dashed #ddd;border-radius:0;background-color: #EBEBEB}
+.comment-form .submit{font-size:13px;position:absolute;right:20px;bottom:20px;display:block;height:32px;margin:0 auto;padding:0 20px;-webkit-transition-duration:.4s;transition-duration:.4s;text-align:center;color:#313131;border:1px solid #f7f7f7;border-radius:30px;background-color:#f7f7f7}
+.comment-form .submit:hover,.submit:active,.submit:active:focus,.submit:focus{color:#6fa3ef;border:1px solid #6fa3ef;outline-style:none;background-color:#fff}
+.form-control{font-size:13px;display:block;width:100%;height:34px;color:#313131;outline:0}
+.comment-form .form-control:focus{border-color:#6fa3ef;outline:0}
+
+
+.clearfix{*zoom:1}
+.clearfix:before,.clearfix:after{display:table;line-height:0;content:""}
+.clearfix:after{clear:both}
