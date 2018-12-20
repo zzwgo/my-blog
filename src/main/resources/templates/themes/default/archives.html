@@ -7,7 +7,7 @@
 <div class="container">
     <div class="con_content">
         <div class="about_box">
-            <h2 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>><a href="#">个人日记</a></span><b>个人日记</b></h2>
+            <h3 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>>时间归档</span><b>时间归档</b></h3>
             <div class="dtxw box">
                 <li>
                     <div class="dttext" th:each="archive : ${archives.list}">
@@ -30,10 +30,9 @@
         </div>
     </div>
 </div>
-</div>
 <!-- container代码 结束 -->
 <div class="jzend"></div>
-
+</div>
 </body>
 <div th:replace="themes/default1/footer::footer"></div>
 </html>

@@ -182,29 +182,29 @@ public class IndexController extends BaseController {
         }
 
         if (null == cid || StringUtils.isBlank(text)) {
-            return RestResponseBo.fail("Please enter your full comment");
+            return RestResponseBo.fail("请输入完整后评论");
         }
 
         if (StringUtils.isNotBlank(author) && author.length() > 50) {
-            return RestResponseBo.fail("The name is too long");
+            return RestResponseBo.fail("姓名过长");
         }
 
         if (StringUtils.isNotBlank(mail) && !TaleUtils.isEmail(mail)) {
-            return RestResponseBo.fail("Please enter the correct email format");
+            return RestResponseBo.fail("请输入正确的邮箱格式");
         }
 
         if (StringUtils.isNotBlank(url) && !PatternKit.isURL(url)) {
-            return RestResponseBo.fail("Please enter the correct URL format");
+            return RestResponseBo.fail("请输入正确的URL格式");
         }
 
         if (text.length() > 200) {
-            return RestResponseBo.fail("Please enter comments of less than 200 characters");
+            return RestResponseBo.fail("请输入200个字符以内的评论");
         }
 
         String val = IPKit.getIpAddrByRequest(request) + ":" + cid;
         Integer count = cache.hget(Types.COMMENTS_FREQUENCY.getType(), val);
         if (null != count && count > 0) {
-            return RestResponseBo.fail("You are too quick to comment. Please try again later");
+            return RestResponseBo.fail("您发表评论太快了，请过会再试");
         }
 
         author = TaleUtils.cleanXSS(author);
@@ -235,7 +235,7 @@ public class IndexController extends BaseController {
             }
             return RestResponseBo.ok();
         } catch (Exception e) {
-            String msg = "failed";
+            String msg = "评论发布失败";
             LOGGER.error(msg, e);
             return RestResponseBo.fail(msg);
         }
@@ -247,24 +247,23 @@ public class IndexController extends BaseController {
      *
      * @return
      */
-    @GetMapping(value = "category/{keyword}")
-    public String categories(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    @GetMapping(value = "category")
+    public String categories(HttpServletRequest request,  @RequestParam(defaultValue ="default") String keyword, @RequestParam(value = "limit", defaultValue = "6") int limit) {
         return this.categories(request, keyword, 1, limit);
     }
 
-    @GetMapping(value = "category/{keyword}/{page}")
-    public String categories(HttpServletRequest request, @PathVariable String keyword,
-                             @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+    @GetMapping(value = "category/{page}")
+    public String categories(HttpServletRequest request,  @RequestParam (defaultValue ="default")String keyword,
+                             @PathVariable int page, @RequestParam(value = "limit", defaultValue = "6") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         MetaDto metaDto = metaService.getMeta(Types.CATEGORY.getType(), keyword);
+        List<MetaDto> categories = metaService.getMetaList(Types.CATEGORY.getType(), null, WebConst.MAX_POSTS);
         if (null == metaDto) {
             return this.render_404();
         }
-
         PageInfo<ContentVo> contentsPaginator = contentService.getArticles(metaDto.getMid(), page, limit);
-
+        request.setAttribute("categories", categories);
         request.setAttribute("articles", contentsPaginator);
-        request.setAttribute("meta", metaDto);
         request.setAttribute("type", "分类");
         request.setAttribute("keyword", keyword);
 

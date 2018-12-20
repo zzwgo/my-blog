@@ -12,6 +12,8 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .blogtitle span a { color: #FFF }
 .blogtitle span:after { content: ""; width: 0px; height: 0px; border-top-width: 6px; border-top-style: solid; border-top-color: transparent; border-left-width: 6px; border-left-style: solid; border-left-color: #333; border-bottom-width: 6px; border-bottom-style: solid; border-bottom-color: transparent; margin: 0px; padding: 0px; position: absolute; right: -6px; top: 6px }
 .blogpic { overflow: hidden; width: 30%; height: 100px; display: block; float: left; margin-right: 20px; background: #333; }
+.linkblogpic{ overflow: hidden; width: 40%; height: 60%; display: block; float: right;background: #EBEBEB}
+.linkblogpic img{opacity: 0.7;}
 .bloglist ul { overflow: hidden }
 .bloglist li { border-bottom: #ccc 1px solid; margin-bottom: 10px; overflow: hidden; }
 .bloglist li img{}

@@ -27,17 +27,17 @@
 </div>
 <![endif]-->
 <script>
-    window.onload = function ()
-    {
-        var oH2 = document.getElementsByTagName("h2")[0];
-        var oUl = document.getElementsByTagName("ul")[0];
-        oH2.onclick = function ()
-        {
-            var style = oUl.style;
-            style.display = style.display == "block" ? "none" : "block";
-            oH2.className = style.display == "block" ? "open" : ""
-        }
-    }
+    // window.onload = function ()
+    // {
+    //     var oH2 = document.getElementsByTagName("#")[0];
+    //     var oUl = document.getElementsByTagName("ul")[0];
+    //     oH2.onclick = function ()
+    //     {
+    //         var style = oUl.style;
+    //         style.display = style.display == "block" ? "none" : "block";
+    //         oH2.className = style.display == "block" ? "open" : ""
+    //     }
+    // }
     $(function() {
         $(".menu ul").css({display: "none"}); // Opera Fix
         $(".menu li").hover(function(){
@@ -67,6 +67,10 @@
                 <ul class="menu">
                     <li><a th:href="${commons.site_url('/')}">网站首页</a></li>
                     <li><a th:href="${commons.site_url('/archives')}">我的日志</a>
+                        <ul>
+                            <li><a th:href="${commons.site_url('/archives')}">时间归档</a></li>
+                            <li><a th:href="${commons.site_url('/category')}">分类归档</a></li>
+                        </ul>
                     </li>
                     <li><a th:href="${commons.site_url('/links')}">友情链接</a> </li>
                     <li><a th:href="${commons.site_url('/message')}">给我留言</a> </li>

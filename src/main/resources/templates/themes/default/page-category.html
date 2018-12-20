@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="themes/default/header::header(${keyword},null)"></div>
+<div th:replace="themes/default1/header::header(${keyword},null)"></div>
 <body>
-<div class="main-content common-page clearfix">
-    <div class="categorys-item">
-        <div class="common-title">
-            <th:block th:text="${type}"/> : <th:block th:text="${keyword}"/>
-        </div>
-        <th:block th:if="${commons.is_empty(articles)}">
-            <div>
-                <p>抱歉，还没有相关文章.</p>
-            </div>
-        </th:block>
-        <th:block th:unless="${commons.is_empty(articles)}">
-            <div class="post-lists">
-                <div class="post-lists-body">
-                    <th:block th:each="article : ${articles.list}">
-                        <div class="post-list-item">
-                            <div class="post-list-item-container ">
-                                <div class="item-label ">
-                                    <div class="item-title">
-                                        <a th:href="${commons.permalink(article)}" th:text="${article.title}"></a>
-                                    </div>
-                                    <div class="item-meta clearfix">
-                                        <div th:class="'item-meta-ico '+${commons.show_icon(article.cid)} "
-                                             th:style="'background: url('+@{/user/img/bg-ico.png}+') no-repeat;background-size: 40px auto;'"></div>
-                                        <div class="item-meta-date">发布于 <th:block th:text="${commons.fmtdate(article.created)}"/></div>
-                                    </div>
+<div id="wrapper">
+    <div class="jztop"></div>
+    <div class="container">
+        <div class="con_content">
+            <div class="about_box">
+                <h3 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>>分类归档</span>
+                    <b>
+                        <th:block th:text="${type}"/> :
+                        <select onchange="window.location.href=this.options[selectedIndex].value" >
+                            <option th:text="请选择" th:value="${commons.site_url('/category')}"></option>
+                            <option th:selected="${c.name==keyword}" th:each="c : ${categories}" th:text="${c.name}" th:value="${commons.site_url('/category')}+'?keyword='+${c.name}" ></option>
+                        </select>
+                    </b>
+                </h3>
+                <div class="dtxw box">
+                    <li>
+                        <div class="dttext">
+                            <th:block th:if="${commons.is_empty(articles)}">
+                                <div>
+                                    <p>抱歉，还没有相关文章.</p>
                                 </div>
-                            </div>
+                            </th:block>
+                            <th:block th:each="article : ${articles.list}">
+                                <div class="xwpic"><a href="/"><img th:src="@{${commons.show_thumb(article)}}"/></a></div>
+                                <ul>
+                                    <h2><a th:href="${commons.permalink(article.cid, article.slug)}" th:text="${article.title}"></a></h2>
+                                    <p th:if="${#strings.length(article.content)>150}"  th:text="${#strings.abbreviate(article.content,150)}"></p>
+                                    <p th:unless="${#strings.length(article.content)>150}" th:text="${article.content}"></p>
+                                    <div class="binfo">
+                                        <span th:text="'浏览量('+${article.hits+')'}"></span>   <span th:text="'发布于'+${commons.fmtdate(article.created)}"></span>
+                                    </div>
+                                </ul>
+                            </th:block>
                         </div>
-                    </th:block>
+                    </li>
                 </div>
+                <div th:replace="comm/macros::pageNav(${articles},'上一页','下一页','/category/')" ></div>
             </div>
-        </th:block>
-
+        </div>
     </div>
+    <!-- container代码 结束 -->
+    <div class="jzend"></div>
 </div>
 </body>
-<div th:replace="themes/default/footer::footer"></div>
+<div th:replace="themes/default1/footer::footer"></div>
 </html>
