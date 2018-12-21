@@ -43,7 +43,7 @@ public class CommentServiceImpl implements ICommentService {
             return "The comment object is empty";
         }
         if (StringUtils.isBlank(comments.getAuthor())) {
-            comments.setAuthor("Enthusiastic netizens");
+            comments.setAuthor("热心网友");
         }
         if (StringUtils.isNotBlank(comments.getMail()) && !TaleUtils.isEmail(comments.getMail())) {
             return "Please enter the correct email format";

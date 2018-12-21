@@ -27,7 +27,7 @@
                     <input type="url" name="url" id="url" class="form-control input-control clearfix"
                            placeholder="网址 (http://)"
                     />
-                    <textarea name="text" id="textarea" class="form-control" placeholder="以上信息可以为空,这儿不能为空哦!"
+                    <textarea name="text" id="textarea" class="form-control" placeholder="以上信息可以为空,评论不能为空哦!"
                               required="required" minlength="5"
                               maxlength="2000"></textarea>
                     <button type="submit" class="submit" id="misubmit">提交</button>
@@ -36,57 +36,53 @@
             <div th:unless="${article.allowComment}">
                 <span class="response">评论已关闭.</span>
             </div>
-
-            <div th:if="${comments}">
-                <ol class="comment-list">
-                    <th:block th:each="comment :${comments.list}">
-                        <li th:id="'li-comment-'+${comment.coid}" class="comment-body comment-parent comment-odd">
-                            <div th:id="'comment-'+${comment.coid}">
-                                <div class="comment-view" onclick="">
-                                    <div class="comment-header">
-                                        <!--设置get请求的参数-->
-                                        <img class="avatar"
-                                             th:src="@{${commons.gravatar(comment.mail)}(s='80',r='G',d='')}"
-                                             th:title="${comment.author}"
-                                             width="80" height="80"/>
-                                        <span class="comment-author">
-                                <a href="##" rel="external nofollow"
-                                   th:text="${comment.author}"></a>
-                            </span>
-                                    </div>
-                                    <div class="comment-content">
-                                        <span class="comment-author-at"></span>
-                                        <p th:utext="${commons.article(comment.content)}"></p>
-                                    </div>
-                                    <div class="comment-meta">
-                                        <time class="comment-time" th:text="${commons.fmtdate(comment.created)}"></time>
-                                        <span class="comment-reply">
-                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </th:block>
-                </ol>
-                <div class="lists-navigator clearfix">
-                    <ol class="page-navigator">
-                        <th:block th:if="${comments.hasPreviousPage}">
-                            <li class="prev"><a th:href="'?cp='+${comments.prePage}+'#comments'">←</a></li>
-                        </th:block>
-                        <th:block th:each="navIndex : ${comments.navigatepageNums}">
-                            <li th:class="${comments.pageNum}==${navIndex}?'current':''"><a
-                                    th:href="'?cp='+${navIndex}+'#comments'" th:text="${navIndex}"></a>
-                            </li>
-                        </th:block>
-                        <th:block th:if="${comments.hasNextPage}">
-                            <li class="next"><a th:href="'?cp='+${comments.nextPage}+'#comments'">→</a></li>
-                        </th:block>
-                    </ol>
-
-                </div>
-            </div>
         </div>
     </div>
+    <div th:if="${comments}">
+        <ol class="comment-list">
+            <th:block th:each="comment :${comments.list}">
+                <li th:id="'li-comment-'+${comment.coid}" class="comment-body comment-parent comment-odd">
+                    <div th:id="'comment-'+${comment.coid}" style="border:1px solid #b4b4b4;opacity: 0.8">
+                        <div class="comment-view" onclick="">
+                            <div class="comment-header">
+                                <!--设置get请求的参数-->
+                                <span class="comment-author">
+                                <a href="##" rel="external nofollow"
+                                   th:text="${comment.author}+':'"></a>
+                            </span>
+                            </div>
+                            <div class="comment-content">
+                                <span class="comment-author-at"></span>
+                                <p th:utext="${commons.article(comment.content)}"></p>
+                            </div>
+                            <div class="comment-meta">
+                                <time class="comment-time" th:text="'于'+${commons.fmtdate(comment.created)+'发表评论'}"></time>
+                                <span class="comment-reply">
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </th:block>
+        </ol>
+
+        <div class="clearfix">
+            <ol class="pagination m-b-5 pull-right ">
+                <th:block th:if="${comments.hasPreviousPage}">
+                    <li class="prev"><a th:href="'?cp='+${comments.prePage}+'#comments'">←</a></li>
+                </th:block>
+                <th:block th:each="navIndex : ${comments.navigatepageNums}">
+                    <li th:class="${comments.pageNum}==${navIndex}?'current':''"><a
+                            th:href="'?cp='+${navIndex}+'#comments'" th:text="${navIndex}"></a>
+                    </li>
+                </th:block>
+                <th:block th:if="${comments.hasNextPage}">
+                    <li class="next"><a th:href="'?cp='+${comments.nextPage}+'#comments'">→</a></li>
+                </th:block>
+            </ol>
+        </div>
+    </div>
+
 </div>
 </body>
 <div th:replace="comm/tale_comment::tale_comment"></div>

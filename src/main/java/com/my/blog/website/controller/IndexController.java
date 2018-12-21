@@ -168,8 +168,8 @@ public class IndexController extends BaseController {
     @ResponseBody
     public RestResponseBo comment(HttpServletRequest request, HttpServletResponse response,
                                   @RequestParam Integer cid, @RequestParam Integer coid,
-                                  @RequestParam String author, @RequestParam String mail,
-                                  @RequestParam String url, @RequestParam String text, @RequestParam String _csrf_token) {
+                                  @RequestParam String author, @RequestParam(required = false) String mail,
+                                  @RequestParam (required = false)String url, @RequestParam String text, @RequestParam String _csrf_token) {
 
         String ref = request.getHeader("Referer");
         if (StringUtils.isBlank(ref) || StringUtils.isBlank(_csrf_token)) {
@@ -197,8 +197,8 @@ public class IndexController extends BaseController {
             return RestResponseBo.fail("请输入正确的URL格式");
         }
 
-        if (text.length() > 200) {
-            return RestResponseBo.fail("请输入200个字符以内的评论");
+        if (text.length() > 100) {
+            return RestResponseBo.fail("请输入100个字符以内的评论");
         }
 
         String val = IPKit.getIpAddrByRequest(request) + ":" + cid;
@@ -223,8 +223,12 @@ public class IndexController extends BaseController {
         comments.setParent(coid);
         try {
             String result = commentService.insertComment(comments);
-            cookie("tale_remember_author", URLEncoder.encode(author, "UTF-8"), 7 * 24 * 60 * 60, response);
-            cookie("tale_remember_mail", URLEncoder.encode(mail, "UTF-8"), 7 * 24 * 60 * 60, response);
+            if (StringUtils.isNotBlank(mail)){
+                cookie("tale_remember_author", URLEncoder.encode(author, "UTF-8"), 7 * 24 * 60 * 60, response);
+            }
+            if (StringUtils.isNotBlank(mail)) {
+                cookie("tale_remember_mail", URLEncoder.encode(mail, "UTF-8"), 7 * 24 * 60 * 60, response);
+            }
             if (StringUtils.isNotBlank(url)) {
                 cookie("tale_remember_url", URLEncoder.encode(url, "UTF-8"), 7 * 24 * 60 * 60, response);
             }
