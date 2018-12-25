@@ -115,7 +115,7 @@ public class ContentServiceImpl implements IContentService {
         LOGGER.debug("Enter getContents method");
         ContentVoExample example = new ContentVoExample();
         example.setOrderByClause("hits desc");
-        example.setLimit(10);
+        example.setLimit(6);
         example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
         List<ContentVo> data = contentDao.selectByExample(example);
         LOGGER.debug("Exit getContents method");
