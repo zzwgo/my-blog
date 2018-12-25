@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="themes/default/header::header(title='我的日志',keywords=null)"></div>
+<div th:replace="themes/default/header::header(${keyword},null)"></div>
 <body>
 <div id="wrapper">
     <div class="jztop"></div>
     <div class="container">
         <div class="con_content">
             <div class="about_box">
-                <h3 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>>分类归档</span>
-                    <b>
-                        <th:block th:text="${type}"/> :
-                        <select onchange="window.location.href=this.options[selectedIndex].value" >
-                            <option th:text="请选择" th:value="${commons.site_url('/category')}"></option>
-                            <option th:selected="${c.name==keyword}" th:each="c : ${categories}" th:text="${c.name}" th:value="${commons.site_url('/category')}+'?keyword='+${c.name}" ></option>
-                        </select>
-                    </b>
+                <h3 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>>搜索页</span>
+                    <b th:text="${keyword}"></b>
                 </h3>
                 <div class="dtxw box">
                     <li>
@@ -38,7 +32,7 @@
                         </div>
                     </li>
                 </div>
-                <div th:replace="comm/macros::pageNav(${articles},'上一页','下一页','/category?keyword='+${keyword}+'&amp;page=')" ></div>
+                <div th:replace="comm/macros::pageNav(${articles},'上一页','下一页','/search?keyword='+${keyword}+'&amp;page=')"></div>
             </div>
         </div>
     </div>

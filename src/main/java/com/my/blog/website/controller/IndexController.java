@@ -256,8 +256,8 @@ public class IndexController extends BaseController {
         return this.categories(request, keyword, 1, limit);
     }
 
-    @GetMapping(value = "category/{page}")
-    public String categories(HttpServletRequest request,  @RequestParam (defaultValue ="default")String keyword,
+    @GetMapping(value = "category/{keyword}/{page}")
+    public String categories(HttpServletRequest request,  @PathVariable String keyword,
                              @PathVariable int page, @RequestParam(value = "limit", defaultValue = "6") int limit) {
         page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
         MetaDto metaDto = metaService.getMeta(Types.CATEGORY.getType(), keyword);
@@ -304,6 +304,28 @@ public class IndexController extends BaseController {
     }
 
     /**
+     * 搜索页
+     *
+     * @param keyword
+     * @return
+     */
+    @GetMapping(value = "search")
+    public String search(HttpServletRequest request, @RequestParam String keyword, @RequestParam(value = "limit", defaultValue = "6") int limit) {
+        return this.search(request, keyword, 1, limit);
+    }
+
+    @GetMapping(value = "search/{keyword}/{page}")
+    public String search(HttpServletRequest request, @PathVariable String keyword, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "6") int limit) {
+        page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
+        PageInfo<ContentVo> articles = contentService.getArticles(keyword, page, limit);
+        request.setAttribute("articles", articles);
+        request.setAttribute("type", "搜索");
+        request.setAttribute("keyword", keyword);
+        return this.render("search");
+    }
+
+
+    /**
      * 自定义页面,如关于的页面
      */
     @GetMapping(value = "/{pagename}")
@@ -327,27 +349,16 @@ public class IndexController extends BaseController {
         return this.render("page");
     }
 
-
     /**
-     * 搜索页
+     * 关于我
      *
-     * @param keyword
      * @return
      */
-    @GetMapping(value = "search/{keyword}")
-    public String search(HttpServletRequest request, @PathVariable String keyword, @RequestParam(value = "limit", defaultValue = "12") int limit) {
-        return this.search(request, keyword, 1, limit);
+    @GetMapping(value = "about")
+    public String about() {
+        return this.render("about-me");
     }
 
-    @GetMapping(value = "search/{keyword}/{page}")
-    public String search(HttpServletRequest request, @PathVariable String keyword, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
-        page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
-        PageInfo<ContentVo> articles = contentService.getArticles(keyword, page, limit);
-        request.setAttribute("articles", articles);
-        request.setAttribute("type", "搜索");
-        request.setAttribute("keyword", keyword);
-        return this.render("page-category");
-    }
 
     /**
      * 更新文章的点击率
@@ -372,45 +383,6 @@ public class IndexController extends BaseController {
         }
     }
 
-    /**
-     * 标签页
-     *
-     * @param name
-     * @return
-     */
-    @GetMapping(value = "tag/{name}")
-    public String tags(HttpServletRequest request, @PathVariable String name, @RequestParam(value = "limit", defaultValue = "12") int limit) {
-        return this.tags(request, name, 1, limit);
-    }
-
-    /**
-     * 标签分页
-     *
-     * @param request
-     * @param name
-     * @param page
-     * @param limit
-     * @return
-     */
-    @GetMapping(value = "tag/{name}/{page}")
-    public String tags(HttpServletRequest request, @PathVariable String name, @PathVariable int page, @RequestParam(value = "limit", defaultValue = "12") int limit) {
-
-        page = page < 0 || page > WebConst.MAX_PAGE ? 1 : page;
-//        对于空格的特殊处理
-        name = name.replaceAll("\\+", " ");
-        MetaDto metaDto = metaService.getMeta(Types.TAG.getType(), name);
-        if (null == metaDto) {
-            return this.render_404();
-        }
-
-        PageInfo<ContentVo> contentsPaginator = contentService.getArticles(metaDto.getMid(), page, limit);
-        request.setAttribute("articles", contentsPaginator);
-        request.setAttribute("meta", metaDto);
-        request.setAttribute("type", "标签");
-        request.setAttribute("keyword", name);
-
-        return this.render("page-category");
-    }
 
     /**
      * 设置cookie

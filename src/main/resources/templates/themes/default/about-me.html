@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="themes/default/header::header(title='关于我',keywords=null)"></div>
+<body>
+<div id="wrapper">
+<div class="jztop"></div>
+<div class="container">
+    <div class="con_content">
+        <div class="about_box">
+            <h2 class="nh1"><span>您现在的位置是：<a href="/">网站首页</a>>>关于我</span><b>关于我</b></h2>
+
+            <ul class="about_content">
+                <h4>小站长</h4>
+                    <ul>
+                        <li><p>*本站主要用来分享互联网资讯、教程、学习笔记、感悟以及记录博主的一些生活琐事等。</p></li>
+                    </ul>
+            </ul>
+            <p><img  th:src="@{/user/images/01.jpg}" /></p>
+        </div>
+    </div>
+</div>
+<div class="jzend"></div>
+<div th:replace="themes/default/footer::footer">
+</div>
+</div>
+</body>
+</html>
