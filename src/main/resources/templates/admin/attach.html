@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="title='Attach Manger',active='attach'">
 <header th:replace="admin/header::headerFragment(${title},${active})"></header>
-<link href="//cdn.bootcss.com/dropzone/4.3.0/min/dropzone.min.css" rel="stylesheet"/>
+<link th:href="@{/admin/css/dropzone.min.css}" rel="stylesheet"/>
 <style>
     #dropzone {
         margin-bottom: 3rem;
@@ -108,12 +108,12 @@
     </div>
 </div>
 <div th:replace="admin/footer :: footer"></div>
-<script src="//cdn.bootcss.com/dropzone/4.3.0/min/dropzone.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.6.0/clipboard.min.js"></script>
+<script th:src="@{/admin/js/dropzone.min.js}"></script>
+<script th:src="@{/admin/js/clipboard.min.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-
+    Dropzone.autoDiscover = false;
     $("#dropzone").dropzone({
         paramName: "file",
         url: "/admin/attach/upload",

@@ -10,7 +10,7 @@
     <meta name="keywords" th:content="${keywords ?: commons.site_option('site_keywords')}"/>
     <meta name="description" th:content="${description ?:commons.site_option('site_description')}"/>
     <title><th:block th:text="${title ?: '首页'}+' - '+${commons.site_option('site_title','My Blog')}"></th:block></title>
-    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/user/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/user/css/base.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/index.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/m.css}" rel="stylesheet"/>
