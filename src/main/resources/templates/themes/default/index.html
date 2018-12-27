@@ -14,8 +14,8 @@
                     <span class="blogpic">
                     <a th:href="${commons.permalink(article)}" ><img th:src="@{${commons.show_thumb(article)}}"/></a>
                     </span>
-                    <p th:if="${#strings.length(article.content)>150}"  th:text="${#strings.abbreviate(article.content,150)}"></p>
-                    <p th:unless="${#strings.length(article.content)>150}" th:text="${article.content}"></p>
+                    <p th:if="${#strings.length(article.content)>80}"  th:text="${#strings.abbreviate(article.content,80)}"></p>
+                    <p th:unless="${#strings.length(article.content)>80}" th:text="${article.content}"></p>
                 </div>
                 <div class="autor">
                     <span class="lm f_l"></span>
@@ -55,7 +55,7 @@
             </ul>
         </div>
 
-        <div> <img th:src="@{/user/images/03.jpg}" /> </div>
+        <div style="opacity:0.7"> <img style="width:110%" th:src="@{/user/images/03.jpg}"/> </div>
     </div>
 </div>
 <div class="jzend"></div>
