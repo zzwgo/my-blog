@@ -4,9 +4,7 @@ import com.my.blog.website.model.Vo.LogVo;
 
 import java.util.List;
 
-/**
- * Created by BlueT on 2017/3/4.
- */
+
 public interface ILogService {
 
     /**

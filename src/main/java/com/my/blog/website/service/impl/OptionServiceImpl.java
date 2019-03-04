@@ -13,10 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-/**
- * options表的service
- * Created by BlueT on 2017/3/7.
- */
+
 @Service
 public class OptionServiceImpl implements IOptionService {
 

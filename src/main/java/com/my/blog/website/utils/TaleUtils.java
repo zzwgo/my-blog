@@ -39,7 +39,6 @@ import com.my.blog.website.model.Vo.UserVo;
 /**
  * Tale工具类
  * <p>
- * Created by 13 on 2017/2/21.
  */
 public class TaleUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(TaleUtils.class);
@@ -360,7 +359,6 @@ public class TaleUtils {
         if (!new File(AttachController.CLASSPATH + prefix).exists()) {
             new File(AttachController.CLASSPATH + prefix).mkdirs();
         }
-
         name = StringUtils.trimToNull(name);
         if (name == null) {
             return prefix + "/" + UUID.UU32() + "." + null;

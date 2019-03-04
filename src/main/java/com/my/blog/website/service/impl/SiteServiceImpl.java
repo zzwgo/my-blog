@@ -32,9 +32,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.*;
 
-/**
- * Created by BlueT on 2017/3/7.
- */
+
 @Service
 public class SiteServiceImpl implements ISiteService {
 
@@ -93,20 +91,15 @@ public class SiteServiceImpl implements ISiteService {
             }
             String bkAttachDir = AttachController.CLASSPATH + "upload";
             String bkThemesDir = AttachController.CLASSPATH + "templates/themes";
-
             String fname = DateKit.dateFormat(new Date(), fmt) + "_" + TaleUtils.getRandomNumber(5) + ".zip";
-
             String attachPath = bk_path + "/" + "attachs_" + fname;
             String themesPath = bk_path + "/" + "themes_" + fname;
-
             ZipUtils.zipFolder(bkAttachDir, attachPath);
             ZipUtils.zipFolder(bkThemesDir, themesPath);
-
             backResponse.setAttachPath(attachPath);
             backResponse.setThemePath(themesPath);
         }
         if (bk_type.equals("db")) {
-
             String bkAttachDir = AttachController.CLASSPATH + "upload/";
             if (!(new File(bkAttachDir)).isDirectory()) {
                 File file = new File(bkAttachDir);
@@ -116,21 +109,16 @@ public class SiteServiceImpl implements ISiteService {
             }
             String sqlFileName = "tale_" + DateKit.dateFormat(new Date(), fmt) + "_" + TaleUtils.getRandomNumber(5) + ".sql";
             String zipFile = sqlFileName.replace(".sql", ".zip");
-
             Backup backup = new Backup(TaleUtils.getNewDataSource().getConnection());
             String sqlContent = backup.execute();
-
             File sqlFile = new File(bkAttachDir + sqlFileName);
             write(sqlContent, sqlFile, Charset.forName("UTF-8"));
-
             String zip = bkAttachDir + zipFile;
             ZipUtils.zipFile(sqlFile.getPath(), zip);
-
             if (!sqlFile.exists()) {
                 throw new TipException("Database backup failed");
             }
             sqlFile.delete();
-
             backResponse.setSqlPath(zipFile);
 
             // 10秒后删除备份文件
@@ -180,7 +168,8 @@ public class SiteServiceImpl implements ISiteService {
         if (null != archives) {
             archives.forEach(archive -> {
                 ContentVoExample example = new ContentVoExample();
-                ContentVoExample.Criteria criteria = example.createCriteria().andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
+                ContentVoExample.Criteria criteria = example.createCriteria()
+                        .andTypeEqualTo(Types.ARTICLE.getType()).andStatusEqualTo(Types.PUBLISH.getType());
                 example.setOrderByClause("created desc");
                 String date = archive.getDate();
                 Date sd = DateKit.dateFormat(date, "yyyy年MM月");

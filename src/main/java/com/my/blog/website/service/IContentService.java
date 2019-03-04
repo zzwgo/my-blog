@@ -6,9 +6,7 @@ import com.my.blog.website.model.Vo.ContentVo;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/3/13 013.
- */
+
 public interface IContentService {
 
 //    /**

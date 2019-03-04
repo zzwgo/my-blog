@@ -10,9 +10,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * Created by Administrator on 2017/3/10 010.
- */
+
 public class DateKit {
     public static final int INTERVAL_DAY = 1;
     public static final int INTERVAL_WEEK = 2;

@@ -14,10 +14,8 @@ public class ZipUtils {
     public static void zipFolder(String srcFolder, String destZipFile) throws Exception {
         ZipOutputStream zip = null;
         FileOutputStream fileWriter = null;
-
         fileWriter = new FileOutputStream(destZipFile);
         zip = new ZipOutputStream(fileWriter);
-
         addFolderToZip("", srcFolder, zip);
         zip.flush();
         zip.close();
@@ -36,7 +34,6 @@ public class ZipUtils {
         }
         in.close();
         zos.closeEntry();
-        //remember close it
         zos.close();
     }
 

@@ -2,9 +2,7 @@ package com.my.blog.website.model.Vo;
 
 import java.io.Serializable;
 
-/**
- * @author 
- */
+
 public class UserVo implements Serializable {
     /**
      * user表主键

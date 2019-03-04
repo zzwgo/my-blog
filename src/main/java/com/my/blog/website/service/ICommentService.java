@@ -5,9 +5,7 @@ import com.my.blog.website.model.Vo.CommentVo;
 import com.my.blog.website.model.Vo.CommentVoExample;
 import com.my.blog.website.model.Bo.CommentBo;
 
-/**
- * Created by BlueT on 2017/3/16.
- */
+
 public interface ICommentService {
 
     /**
