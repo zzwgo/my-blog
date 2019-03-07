@@ -1,0 +1,157 @@
+<template>
+  <div class="table">
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item><i class="el-icon-lx-cascades"></i> GetCodeConversion</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
+    <div class="container">
+      <div class="handle-box">
+        <el-form inline="true" v-loading="loading">
+          <el-form-item lable= "TP_ID">
+            <el-select v-model="tpid" filterable placeholder="TP_ID" style="margin:0 auto  ;" size="medium" @change="getMessageTypeId">
+              <el-option v-for="(item, index) in tpidList"
+                     :key="index"
+                     :value="item.tpid"
+                     :label="item.tpid">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item lable= "MessageTypeId">
+            <el-select v-model="messageType" filterable placeholder="MessageTypeId" style="margin:0 auto  ;" size="medium">
+              <el-option v-for="(item, index) in messageTypeList"
+                     :key="index"
+                     :value="item.messageType"
+                     :label="item.messageType">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item lable= "dir">
+            <el-select v-model="dir" filterable placeholder="Direction" style="margin:0 auto  ;" size="medium">
+              <el-option v-for="(item, index) in dirList"
+                     :key="index"
+                     :value="item.dir"
+                     :label="item.lable">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-button type="primary" icon="search" @click="getCodeConversionList()">??</el-button>
+        </el-form>
+      </div>
+      <el-table :data="BCC" stripe style="width: 100%" >
+        <el-table-column prop="convert_type_id" label="convert_type_id">
+        </el-table-column>
+        <el-table-column prop="dir_id" label="dir_id" >
+        </el-table-column>
+        <el-table-column prop="msg_type_id" label="msg_type_id">
+        </el-table-column>
+        <el-table-column prop="tp_id" label="tp_id">
+        </el-table-column>
+        <el-table-column prop="int_cde" label="int_cde">
+        </el-table-column>
+        <el-table-column prop="ext_cde" label="ext_cde">
+        </el-table-column>
+      </el-table>
+
+    </div>
+  </div>
+</template>
+
+<script>
+import utils from "../../utils/util";
+import axios from "axios";
+import store from "@/store/store";
+export default {
+  name: "getCC",
+  data() {
+    return {
+      loading: false,
+      tpid: "",
+      messageType: "",
+      dir: "",
+      BCC: [],
+      tpidList: [],
+      messageTypeList: [],
+      dirList: [
+        {
+          dir: "I",
+          lable: "Incoming to OLL"
+        },
+        {
+          dir: "O",
+          lable: "Outgoing from OLL"
+        }
+      ]
+    };
+  },
+  methods: {
+    getCodeConversionList() {
+      let postUrl = "";
+      if (this.messageType == "" && this.dir == "" && this.tpid == "") {
+        callback(new Error("please input at least one information"));
+      } else if (this.messageType == "" && this.dir == "") {
+        postUrl = store.state.url + "getCodeConvertsion/" + this.tpid;
+      } else if (this.dir == "") {
+        postUrl = store.state.url + "getCodeConvertsion/" + this.tpid + "/" + this.messageType;
+      } else {
+        postUrl = store.state.url + "getCodeConvertsion/" + this.tpid + "/" + this.messageType + "/" + this.dir;
+      }
+      this.loading=true;
+      axios.get(postUrl).then(response => {
+          this.BCC = response.data;
+          this.loading=false;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    getTPId(){
+      this.loading=true;
+      let postUrl = store.state.url;
+      axios.get(postUrl).then(response => {
+        this.tpidList = response.data;
+        this.loading=false;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    getMessageTypeId() {
+      this.loading=true;
+      let postUrl = store.state.url + this.tpid;
+      axios.get(postUrl).then(response => {
+        this.messageTypeList = response.data;
+        this.loading=false;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  },
+  created() {
+    this.getTPId();
+  }
+};
+</script>
+
+<style scoped>
+.handle-box {
+  margin-bottom: 20px;
+}
+.handle-input {
+  width: 300px;
+  display: inline-block;
+}
+.table {
+  width: 100%;
+  font-size: 14px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+body {
+  margin: 0;
+}
+</style>
